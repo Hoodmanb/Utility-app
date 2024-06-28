@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Sign Up</title>
+    <%- head %>
+    <%- bootstrap %>
+    <link rel="stylesheet" href="/assets/css-files/sign-up.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</head>
+<body>
+    <section class="upper">
+        <div class="upper-back"></div>
+        <div class="back-and-theme">
+            <span class="back" onclick="history.back()"><i class="material-icons" style="font-size:30px;">&#xe5c4;</i></span>
+            <button class="theme" role="switch" aria-label="light/dark mode" style="display:none"></button>
+        </div>
+    </section>
+
+    <main>
+        <h2>Create<br>New Account</h2>
+        <!-- <form action="/create" method="POST" id="signUpForm">-->
+
+        <form id="signUpForm">
+
+            <label for="Name" id="input-l">
+                <i class="material-icons">&#xe7fd;</i> </label>
+            <input type="text" id="userName" class="input" name="displayName" placeholder="Username"><br />
+
+            <label for="email" id="input-ll">
+                <i class="material-icons">&#xe0be;</i> </label>
+            <input type="email" id="email" class="input" name="email" placeholder="Email"><br />
+
+            <label for="password " id="input-lll">
+                <i class="material-icons">&#xe897;</i> <span id="eyeicon">  <i class="fa-solid fa-eye-slash"></i> </label>
+                <input type="password" class="input" id="password" name="password" placeholder="Password"><br />
+
+
+                <div class="t-nd-c">
+                    <div>
+                        <input type="checkbox" class="t-and-c check" id="t-and-c" name="t-and-c">
+                        <label for="t-and-c" class="t-and-c"> I agree to the </label>
+                    </div>
+                    <a href="#" class="terms">Terms and conditions?</a>
+                </div>
+
+                <button type="submit" class="create trans-btn"
+                    id="create"><span id="create-span"> </span><b id="bold"> Create</b></button>
+            </form>
+
+            <a href="/log-in"><button class="new-user trans-btn">
+                <b>Already a user?</b> Log In
+            </button></a>
+
+
+
+            <%- popUpAlert %>
+
+        </main>
+        <script src="/assets/js-files/general.js"></script>
+        <script src="/assets/js-files/theme.js"></script>
+        <script src="/assets/js-files/src/signup.js"></script>
+
+    </body>
+</html>

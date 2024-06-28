@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload User Photo</title>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import {
+            initializeApp
+        } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import {
+            getAuth,
+            onAuthStateChanged,
+            signInWithEmailAndPassword,
+            updateProfile
+        } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+        import {
+            getStorage,
+            ref,
+            uploadBytesResumable,
+            getDownloadURL
+        } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js';
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC9uj60MMA8UXdHVJTaOJFIGllbS267Kvc",
+            authDomain: "bill-payment-52e57.firebaseapp.com",
+            projectId: "bill-payment-52e57",
+            storageBucket: "bill-payment-52e57.appspot.com",
+            messagingSenderId: "737516881413",
+            appId: "1:737516881413:web:5f1fc8129c653b8484be6c",
+            measurementId: "G-7YW08XKPHP"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const storage = getStorage(app);
+
+        // Check authentication state
+        onAuthStateChanged(auth, (user) => {
+            if (user && user.photoURL) {
+                document.getElementById('userPhoto').src = user.photoURL;
+            }
+        });
+
+        // Sign in function
+        window.signIn = function() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth,
+                email,
+                password)
+            .then((userCredential) => {
+                console.log('Signed in:', userCredential.user);
+            })
+            .catch((error) => {
+                console.error('Error signing in:', error);
+            });
+        };
+
+        // Upload photo function
+        window.uploadPhoto = function() {
+            const fileInput = document.getElementById('photoInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('No file selected');
+                return;
+            }
+
+            const user = auth.currentUser;
+            if (!user) {
+                alert('User not authenticated');
+                return;
+            }
+
+            //file.name = 'profile-pics'
+            const storageRef = ref(storage, 'user_photos/' + user.uid + '/' + 'profile-pics');
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    console.error('Upload failed:', error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        updateProfile(user, {
+                            photoURL: downloadURL
+                        }).then(() => {
+                            console.log('User profile updated with photo URL');
+                            document.getElementById('userPhoto').src = downloadURL;
+                        }).catch((error) => {
+                            console.error('Error updating user profile:', error);
+                        });
+                    });
+                }
+            );
+        };
+    </script>
+</head>
+<body>
+    <div>
+        <h2>Sign In</h2>
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button onclick="signIn()">Sign In</button>
+    </div>
+    <div>
+        <h2>Upload User Photo</h2>
+        <input type="file" id="photoInput" accept=".jpg, .jpeg, .png">
+        <button onclick="uploadPhoto()">Upload Photo</button>
+    </div>
+    <img id="image-preview" src="https://firebasestorage.googleapis.com/v0/b/bill-payment-52e57.appspot.com/o/user_photos%2FhJQ8PUST7FXV6pmOL609NCWFuSr1%2Fprofile-pics?alt=media&token=4da43f0f-ec1f-474a-9b91-92e02504edd9" alt="User Photo" />
+</body>
+</html>

@@ -1,0 +1,200 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  /* For iOS */
+  tap-highlight-color: transparent;
+  /* For Android */
+  box-sizing: border-box;
+  background: none;
+}
+body {
+  background-color: var(--bkg2);
+  width: 100%;
+  height: auto;
+  font-weight: 500;
+  color: var(--blue);
+}
+.upper-back {
+  background-color: var(--bkg);
+  width: 100%;
+  height: 15em;
+  border-radius: 0px 0px 0px 480px;
+}
+.back-and-theme {
+  position: absolute;
+  top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-Between;
+  width: 90%;
+}
+.back {
+  color: var(--text);
+  margin-left: 7.5%;
+  width: auto;
+  height: auto;
+  transition: 0.2s background-color;
+}
+.back:active {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translate(0, -5px);
+  opacity: 0.5;
+  padding: 2px;
+  border-radius: 50%;
+}
+.theme {
+  display: none;
+}
+main {
+  width: 85%;
+  margin: auto;
+  top: 20px;
+  margin-bottom: 2em;
+}
+h2 {
+  font-weight: bold;
+  color: var(--blue2);
+  margin-bottom: 20px;
+}
+form i,
+button {
+  color: var(--blue2);
+}
+#input-l,
+#input-ll,
+#input-lll {
+  position: absolute;
+  left: 3.5em;
+  margin-top: 12px;
+}
+
+#eyeicon{
+  position: absolute;
+  right:-14em; 
+  margin-top:-1.5em ;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.input::placeholder {
+  font-size: 18px;
+  font-weight: bold;
+}
+.input {
+  padding-left: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.8em;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: bold;
+}
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  font-size: 18px;
+  font-weight: light;
+}
+.input,
+.create,
+.new-user {
+  width: 100%;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  border: 1.5px solid var(--grey);
+}
+.create,
+.new-user {
+  height: 3.5em;
+}
+button:active {
+  transform: scale(0.9);
+  opacity: 0.5;
+}
+.t-and-c {
+  float: left;
+  color: var(--blue2);
+}
+.t-nd-c {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.check {
+  margin-right: 10px;
+}
+.terms {
+  right: 0;
+  color: var(--orange);
+  margin-left: 3px;
+}
+#create {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: none;
+  background-color: var(--blue2);
+  margin-bottom: 70px;
+  color: var(--text);
+  font-weight: 500;
+  transition: background-color 0.5s;
+}
+h4 {
+  margin-bottom: 5px;
+}
+.new-user {
+  border: 1px solid #0062FF;
+}
+.error-note {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+#bold {
+  margin-left: 5px;
+}
+
+.alert-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: grey;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 70%;
+}
+
+/* Style for the OK button */
+.ok-btn {
+  margin-top: 5px;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 3em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  border-radius: 15px;
+}
+.res-message {
+  font-weight: bold;
+}

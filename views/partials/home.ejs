@@ -1,0 +1,111 @@
+<head>
+    <link rel="stylesheet" href="/assets/css-files/home.css">
+</head>
+
+<main>
+    <div class="profile-nd-notif">
+
+        <span class="img-and-name">
+            <span class="prof-img">
+                <img src="/assets/images/f7befea457f0a186b1637212bb9bb4b6.jpg" class="image" id="image" style="width:100%;">
+            </span>
+            <div class="name-and-wlc">
+                <h6 id="greet"> Hello </h6>
+                <h4>Welcome Back!</h4>
+            </div>
+        </span>
+        <!--<i style="font-size:24px" class="fa theme" role="switch">&#xf185;</i>-->
+        <span class="theme-and-notify">
+            <button class="theme" role="switch" aria-label="light/dark mode"></button>
+            <span class="notification"><i style="font-size:20px;" class="fa">&#xf0a2;</i></span>
+        </span>
+    </div>
+
+
+
+    <div class="user" id="userAuthState">
+        <% if (user !== null) {
+            %>
+            <button id="logout" style="background-color:#dc3545;" class="auth">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp; Logout</button>
+            <%
+        } else {
+            %>
+
+            <button class=" auth" id="login">
+                <i class="fa-solid fa-right-to-bracket"></i>  &nbsp; Login</button>
+            <%
+        } %>
+
+
+    </div>
+
+    <section class="balance" id="balance">
+        <div>
+            <h5>Account Number</h5>
+            <h3 style="display:inline" id="acc-no">2191588808</h3> &#x00A0;<i style="font-size:10px" onclick="copy()" id="copy" class="fa copy">&#xf0c5; copy</i>
+
+            <br><br><br>
+            <h5>Your Balance</h5>
+            <h3><b>₦20,300.00</b></h3>
+        </div>
+
+        <div class="add-money">
+            <i style="font-size:24px; font-weight:thin;" class="fa">&#xf067;</i>
+        </div>
+    </section>
+
+    <section class="card-section">
+        <a href="/airtime"class="card">
+            <i style="font-size:1.3em; color:blue;" class="fa">&#xf095;</i>
+            <h3>Airtime</h3>
+
+        </a>
+
+        <a href="/data" class="card">
+            <i style="font-size:1.3em; color:#007bff;;" class="fa">&#xf1eb;</i>
+            <h3>Data</h3>
+
+
+        </a>
+
+        <a href="#" class="card">
+            <i style="font-size:1.3em;" class="fa">&#x1F4A1;</i>
+            <h3>Utility</h3>
+
+        </a>
+
+        <a href="#" class="card">
+            <i style="font-size:1.3em; color:#333333;" class="fa">&#xf26c;</i>
+            <h3>Tv</h3>
+
+        </a>
+    </section>
+
+
+
+    <div class="statistics ">
+
+        <h2>Transaction Statistics</h2>
+        <hr>
+        <h3>Wallet Balance</h3>
+        <h4>₦20,300.00</h4>
+        <hr>
+        <h3>Total Funding</h3>
+        <h4>₦20,300.00</h4>
+        <hr>
+        <h3>Total Spent</h3>
+        <h4>₦20,300.00</h4>
+
+    </div>
+
+    <!--</div>-->
+
+</main>
+    <div class="copied" id="copied">
+        Copied!
+    </div>
+<script src="/assets/js-files/home.js"></script>
+
+
+<!--</html>-->

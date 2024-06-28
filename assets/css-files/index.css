@@ -1,0 +1,64 @@
+.add-money,
+.notification,
+.card i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body{
+    overflow: ;
+    background-color: var(--bkg);
+}
+
+.balance,
+.profile-nd-notif,
+.searcher {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.swiper-pagination {
+  position: fixed;
+  width: 100% !important;
+  left: auto !important;
+  display: flex;
+  justify-content: space-Around;
+  align-items: center;
+  background-color: var(--bkg);
+  height: 3em;
+  transform: translateY(20%);
+  padding-bottom: 10px;
+  padding-top: 5px;
+
+}
+
+
+
+.material-icons {
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.material-icons:hover {
+  background-color:;
+}
+
+
+.swiper-pagination-bullet {
+  padding: auto;
+  width: 2.5em;
+  height: 30px;
+  /*text-align: center;*/
+  font-size: 25px;
+  color: var(--grey);
+  opacity: 1;
+  background-color: transparent;
+}
+.swiper-pagination-bullet-active {
+  color: #fff;
+  background-color: var(--bkg2);
+  border-radius: 3em;
+}

@@ -1,0 +1,143 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    /* For iOS */
+    tap-highlight-color: transparent;
+    /* For Android */
+    box-sizing: border-box;
+    user-select: none;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+body {
+    /*height:100vh;*/
+    width: 90%;
+    margin: auto;
+    padding-top: 3em;
+    color: var(--text-dark);
+    background-color: var(--bkg);
+}
+
+.back {
+    transform: translate(0, -2em);
+    margin-left: 4%;
+    margin-right: 2.2em;
+}
+.top-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+main {
+    padding:;
+    top: 2em;
+}
+.section {
+    margin-bottom: 20px;
+}
+input {
+    width: 60%;
+    height: 2.3em;
+    font-size: 1.1em;
+    color: var(--text);
+}
+#number-and-network {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+#img-parent,
+.select-img-parent{
+    width: 2.7em;
+    height: 2.7em;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: red;
+}
+img,
+#logo {
+    width: 100%;
+    margin: auto;
+}
+#number {
+    border-bottom: 1px solid var(--text);
+    margin: 0px 15px;
+}
+.card {
+    width: 30%;
+    background-color: grey;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    margin: 10px 5px;
+    margin-bottom: 15px;
+    height: auto;
+    color: #3C4447;
+}
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+#amount {
+    width: 60%;
+    padding-left: 10px;
+}
+.second-sec {
+    text-align: center;
+}
+#pay {
+    background-color: var(--blue-color2);
+    color: var(--text-dark);
+    width: 25%;
+    float: right;
+    padding: 7px 10px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.pay:active,
+.back:active,
+.card:active,
+#img-parent:active,
+#logo:active {
+    transform: scale(0.9);
+    opacity: 0.5;
+}
+#cover-div{
+    position: relative;
+}
+#network-select {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bkg2);
+    width: 100%;
+    display: none;
+    border-radius: 10%;
+    padding: 5%;
+    
+}
+ul {
+    list-style-type: none;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+.select-img-parent{
+    margin-right: -30%;
+    
+}
+.mark{
+    border-radius: 50%;
+}

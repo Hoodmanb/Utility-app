@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- head %>
+    <title>Profile Setup</title>
+    <link rel="stylesheet" href="/assets/css-files/common-styles.css">
+    <link rel="stylesheet" href="/assets/css-files/setprofile.css">
+</head>
+<body>
+    <main>
+        <button class="theme" role="switch" style="display:none;" aria-label="light/dark mode"></button>
+        <div id="upper-buttons">
+            <button class="top-button">Skip</button>
+            <button class="top-button" id="done">Save</button>
+        </div>
+
+        <div class="popUp" id="popUp">
+            <img id="image-preview" alt="User Photo" />
+            <div class="buttonContainer">
+                <button type="button" id="cancel" class="cancel">Cancel</button>
+                <button type="button" id="continue" class="continue">Continue</button>
+            </div>
+        </div>
+
+        <form id="setupform">
+            <div id="image">
+                <img src="/assets/images/images.png">
+
+                <label for="photoInput" class="fileInputLabel">
+                    <i id="cameraIcon" class="fa-solid fa-camera" style="font-size:1.5em;"></i>
+                </label>
+                <input type="file" name="imageFile" id="photoInput" accept=".jpg, .jpeg, .png" class="photoInput">
+
+            </div>
+            <label for='name'> Names</label>
+            <input type="text" name="names" id="names"><br>
+
+            <label for='number'> Number</label>
+            <input type="text" name="number" id="number"><br>
+
+            <label for='country'> Country</label>
+            <input type="text" name="country" id="country"><br>
+
+
+            <input type="button" class="gender" value="male" />
+            <input type="button" class="gender" value="female" />
+        </form>
+    </main>
+    <script>
+        
+        
+    </script>
+    <script src="/assets/js-files/theme.js"></script>
+    <script src="/assets/js-files/src/setprofile.js"></script>
+</body>
+</html>

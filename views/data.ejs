@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- head %>
+    <title>Data purchase</title>
+    <link rel="stylesheet" href="/assets/css-files/airtime.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        .mySwiper {
+            background-color: var(--bkg2);
+            width: 70%;
+            height: 5em;
+            border-radius: 1em;
+        }
+        .slide1 {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            justify-content: center;
+            align-items: left;
+            padding-left: 1em;
+        }
+        .offer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1em 0;
+        }
+        .slide1 h6 {
+            position: absolute;
+            right: 0;
+            top: -0.5em;
+            padding: 0.3em;
+            background-color: grey;
+            border-radius: 5px 0 0 5px;
+            color: lightgreen;
+            margin: 5px 0;
+        }
+        .slide1 h5 {
+            color: lightgreen;
+            margin-top: 5px;
+        }
+        s {
+            text-decoration: line-through;
+            color: grey;
+            margin-left: 0.7em;
+            font-size: 0.7em;
+        }
+
+
+
+
+
+
+
+
+
+        .plans {
+            position: relative;
+            padding: 2em 0em;
+        }
+        .plan-name {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .swiper-pagination-plan {
+            position: relative;
+            z-index: ;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0.7em 0;
+            border-radius: none;
+
+        }
+        .swiper-pagination-plan .swiper-pagination-bullet {
+            width: auto;
+            padding: 0.5em 1em;
+            height: auto;
+            margin: 0 0.5em;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            text-align: center;
+
+        }
+        .swiper-pagination-bullet-active {}
+
+
+    </style>
+</head>
+<body>
+    <!--back button and header-->
+    <div class="top-section">
+        <span class="back"onclick="history.back()"><i class="material-icons" style="font-size:30px;">&#xe5c4;</i></span>
+        <h2 class="purchase">Data purchase</h2>
+    </div>
+
+    <button class="theme" role="switch" aria-label="light/dark mode" style="display:none"></button>
+
+    <main class="main-shadow">
+        <form>
+
+            <!--Mobile Number-->
+            <div id="cover-div">
+                <div id="number-and-network">
+                    <span class="" id="img-parent"> <img src="assets/images/mtn.png"></span>
+                    <input type="number" id="number" placeholder="Mobile Number" class="number">
+                    <span class="" id="icon-parent">
+                        <i class="fa nav-btn fa-solid fa-user" id="logo" style="font-size:30px;"></i></span>
+                </div>
+                <!--Network-->
+                <div class="network section" id="network-select">
+                    <ul>
+                        <li class="net-work">
+                            <span class="select-img-parent">
+                                <img src="assets/images/mtn.png" class="select-img">
+                            </span>
+                            Mtn
+                            <i class="fa-regular mark fa-circle-check"></i>
+                        </li>
+                        <li class="net-work">
+                            <span class="select-img-parent">
+                                <img src="assets/images/mtn.png" class="select-img">
+                            </span>
+                            Mtn
+                            <i class="fa-regular mark fa-circle-check"></i>
+                        </li>
+                        <li class="net-work">
+                            <span class="select-img-parent">
+                                <img src="assets/images/mtn.png" class="select-img">
+                            </span>
+                            Mtn
+                            <i class="fa-regular mark fa-circle-check"></i>
+                        </li>
+                        <li class="net-work">
+                            <span class="select-img-parent">
+                                <img src="assets/images/mtn.png" class="select-img">
+                            </span>
+                            Mtn
+                            <i class="fa-regular mark fa-circle-check"></i>
+                        </li>
+                    </ul>
+                </div>
+                <h4>Recommended Data Offers </h4>
+                <div class="offer">
+
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide slide1">
+                                <h6 class="start">ends: 01-01-2024</h6>
+                                <h4>3GB/2days/50% off</h4>
+                                <h5>&#8358;400<s>&#8358;800</s></h5>
+                            </div>
+                            <div class="swiper-slide slide1">
+                                <h6 class="start">ends: 01-01-2024</h6>
+                                <h4>3GB/2days/50% off</h4>
+                                <h5>&#8358;400<s>&#8358;800</s></h5>
+                            </div>
+                            <div class="swiper-slide slide1">
+                                <h6 class="start">ends: 01-01-2024</h6>
+                                <h4>3GB/2days/50% off</h4>
+                                <h5>&#8358;400<s>&#8358;800</s></h5>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+
+                <div class="swiper plans">
+                    <div class="swiper-pagination-plan"></div>
+                    <div class="swiper-wrapper wrapper-plans">
+
+                        <div class="swiper-slide slide2">
+                            <div class="cards">
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div> 
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide slide2">
+                            <div class="cards">
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div> 
+                                <div class="card">
+                                    <h4>1GB</h4>
+                                    <h5>1 day</h5>
+                                    <h5>&#8358;350</h5>
+                                    <h6 style="color:lightgreen; margin:5px 0px;">&#8358;0.5 Cashback</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!--Amount-->
+                <span class="amountparent">
+                    <label for="amount" class="amount-label">&#8358;</label>
+                    <input type="numbeer" id="amount" placeholder="50-50,000" class="amount">
+                </span>
+
+                <!--submit button-->
+                <button type="button" class="pay" id="pay"> Pay</button>
+            </div>
+        </form>
+        <footer>
+            <h4>Recent</h4>
+        </footer>
+    </main>
+</body>
+
+<script src="/assets/js-files/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script defer>
+    var menu = ['Daily', 'Weekly']; // Define your menu array
+
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 5,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        loop: true
+    });
+
+    var swiperPlans = new Swiper(".plans", {
+        slidesPerView: 1,
+        spaceBetween: 5,
+        pagination: {
+            el: ".swiper-pagination-plan",
+            clickable: true,
+            renderBullet: function(index, className) {
+                var icon = menu[index % menu.length];
+                return '<span class="' + className + ' ' + ' plan-name">' + icon + '</span>';
+            },
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const network = document.querySelectorAll('.net-work');
+        const image = document.getElementById('img-parent');
+        const networkSelect = document.getElementById('network-select')
+
+        function colorChange(list) {
+            list.forEach(item => {
+                const mark = item.children[1];
+                if (mark) {
+                    item.addEventListener('click', () => {
+                        // Reset the background color of all marks
+                        list.forEach(innerItem => {
+                            const innerMark = innerItem.children[1];
+                            if (innerMark) {
+                                innerMark.style.backgroundColor = ''; // Set to original color
+                            }
+                        });
+
+                        // Set the background color of the clicked mark
+                        mark.style.backgroundColor = 'green';
+                        networkSelect.style.display = 'none';
+                    });
+                }
+            });
+        }
+
+        colorChange(network);
+
+        image.addEventListener('click', (e) => {
+            if (networkSelect.style.display === 'none') {
+                networkSelect.style.display = 'block';
+            } else {
+                networkSelect.style.display = 'none';
+            }
+        });
+    })
+</script>
+</html>

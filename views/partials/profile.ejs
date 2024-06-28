@@ -1,0 +1,157 @@
+<head>
+    <link rel="stylesheet" href="/assets/css-files/profile.css">
+</head>
+<main class="">
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn left" onclick="leftClick()">Profile</button>
+            <button type="button" class="toggle-btn right" onclick="rightClick()">Setting </button>
+        </div>
+
+        <section id="profile">
+            <div class="profile-img">
+                <img src="" id="socket-profileImage">
+                <span class="edit"><i style="font-size:20px" class="fa">&#xf040;</i></span>
+            </div>
+            <div class="popup-card" id="popup-card">
+                <div class="top-sec">
+                    <h4 class="update-form" id="update-form"></h4>
+                    <i class="fa-solid fa-x" id="close" style="cursor: pointer;"></i>
+                </div>
+                <form id="profileForm">
+                    <input type="text" id="itemToEdit" name="itemToEdit">
+                    <!--<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password">-->
+                    <button type="submit" id="update" class="btn btn-success">Update</button>
+                </form>
+            </div>
+
+            <div class="details">
+                <table class="first-sec">
+                    <tr>
+                        <td class="tleft">Name</td>
+                        <td class="tright"><b class="null" id="socket-names"></b> <i id="names" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Phone</td>
+                        <td class="tright"> <b class="null" id="socket-phone"></b><i id="phone" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Display Name</td>
+                        <td class="tright"> <b class="null" id="socket-displayName"></b><i id="displayname" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Gender</td>
+                        <td class="tright"> <b class="null" id="socket-gender"></b><i id="gender" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Email</td>
+                        <td class="tright"> <b class="null" id="socket-email"></b>
+                           <!-- <i class="fa-solid fa-arrow-right"></i>-->
+                        </td>
+                    </tr>
+                </table>
+                <div class="pro">
+                    <button id="upgrade">
+                        Upgrade to Pro
+                    </button>
+                </div>
+                <table class="second-sec">
+                    <tr>
+                        <td class="tleft">Account No</td>
+                        <td class="tright">Age <i class="fa-solid fa-arrow-right"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Plan</td>
+                        <td class="tright">Age <i class="fa-solid fa-arrow-right"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Plan</td>
+                        <td class="tright">Age <i class="fa-solid fa-arrow-right"></i></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="setting">
+
+            <div id="overlay" class="overlay"></div>
+
+            <div class='delete-pop' id="delete-pop">
+                <h4>Warning: All data would be deleted,<br>
+                    this action is immutable </h4>
+                <div id="buttons">
+                    <button type="button" class="Dbutton" style='background-color:#17a2b8;' id="cancel">Cancel</button>
+                    <button type="button" class="Dbutton" style='background-color:#dc3545;' id="c-delete">Delete</button>
+                </div>
+            </div>
+
+
+            <h1 class="setting-h1">Setting</h1>
+            <div class="details">
+                <table class="first-sec">
+                    <tr>
+                        <td class="tleft">Theme</td>
+                        <td class="tright">
+                            <i id="theme" style="font-size:15px" class="fa themeEdit">&#xf040;</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Privacy</td>
+                        <td class="tright">
+                            <i id="privacy" class="fa-solid fa-arrow-right editSet"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Security</td>
+                        <td class="tright">
+                            <i id="security" class="fa-solid fa-arrow-right editSet"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Contact Us</td>
+                        <td class="tright">
+                            <i id="contact" class="fa-solid fa-arrow-right editSet"></i>
+                        </td>
+                    </tr>
+                </table>
+                <table class="second-sec">
+                    <tr>
+                        <td class="tleft">Account</td>
+                        <td class="tright">
+                            <i id="account" class="fa-solid fa-arrow-right editSet"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Help</td>
+                        <td class="tright">
+                            <i id="help" class="fa-solid fa-arrow-right editSet"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">About</td>
+                        <td class="tright">
+                            <i id="about" class="fa-solid fa-arrow-right editSet"></i>
+                        </td>
+                    </tr>
+                </table>
+                <div class="pro">
+                    <% if (user !== null) {
+                        %>
+                        <button style="background-color:#dc3545" id="delete" class="delete"> <i class="fa-solid fa-trash"></i>&nbsp;Delete Account</button>
+
+                        <button style="background-color:#dc3545;" id="prof-logout" class="prof-logout">  <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;Logout</button>
+                        <%
+                    } else {
+                        %>
+                        <button style="background-color:green" id="prof-login" class="prof-login">  <i class="fa-solid fa-right-to-bracket"></i>&nbsp;LogIn</button>
+                        <%
+                    } %>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="/assets/js-files/profile.js"></script>
+<script src="/assets/js-files/src/profileUpdate.js"></script>

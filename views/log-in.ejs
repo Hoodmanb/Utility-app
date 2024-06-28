@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Log In</title>
+  <%- head %>
+  <%- bootstrap %>
+  <link rel="stylesheet" href="/assets/css-files/log-in.css">
+  <script type="module" src="/assets/js-files/src/googleAuth.js"></script>
+</head>
+<body>
+  <section class="upper">
+    <div class="upper-back"></div>
+    <span class="back" onclick="history.back()"><i class="material-icons" style="font-size:30px;">&#xe5c4;</i></span>
+  </section>
+  <button class="theme" role="switch" aria-label="light/dark mode"></button>
+  <main>
+    <h2>Log in</h2>
+    <form id="logInForm">
+      <label for="email" id="input-l"><i class="material-icons">&#xe0be;</i></label>
+      <input type="email" id="email" class="input" name="email" placeholder="Email"><br>
+      <label for="password " id="input-ll"> <i class="material-icons">&#xe897;</i>   <span id="eyeicon">  <i class="fa-solid fa-eye-slash"></i>  </span></label>
+      <input type="password" class="input" id="password" name="password" placeholder="Password"><br>
+      <div class="rem-me-and-pass">
+        <div>
+          <input type="checkbox" class="rem-me" id="rem-me" name="rem-me">
+          <label for="rem-me" class="rem-me">Remember me?</label>
+        </div>
+        <a href="#" class="forgot-pass">Forgot Password?</a>
+      </div>
+      <button type="submit" class="log-in trans-btn" id="log-in">Login</button>
+
+    </form>
+
+    <h4>Log in with</h4>
+    
+      <button class="google trans-btn" id="googleauth">Google</button>
+    <!--<button class="google" id="googleauth">Google</button>-->
+
+
+    <a href="sign-up"><button class="new-user trans-btn"><b>New user?</b> Create account</button></a>
+    <%- popUpAlert %>
+  </main>
+  <script src="../assets/js-files/general.js"></script>
+  <script src="/assets/js-files/theme.js"></script>
+  <script src="/assets/js-files/src/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- indexhead %>
+    <%- head %>
+</head>
+<body>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <%- include('partials/home') %>
+            </div>
+            <div class="swiper-slide">
+                <%- include('partials/history') %>
+            </div>
+            <div class="swiper-slide">
+                <%- include('partials/profile') %>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="swiper-pagination"></div>
+
+
+    <script src="/assets/js-files/index.js"></script>
+    <script src="/assets/js-files/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/assets/js-files/src/webSocket.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script defer>
+        var menu = ['&#xe88a;', '&#xe889;', '&#xe7fd;'];
+        var swiper = new Swiper(".mySwiper", {
+            autoHeight: true,
+            slidesPerView: 1,
+            spaceBetween: 5,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    var icon = menu[index % menu.length];
+                    return '<span class="' + className + ' material-icons">' + icon + '</span>';
+                },
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 5,
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 5,
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 5,
+                },
+            },
+            on: {
+                slideChange: function () {
+                    localStorage.setItem('currentSlide', swiper.activeIndex);
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+
+        window.addEventListener('load', function () {
+            let slideToOnRefresh = localStorage.getItem('currentSlide');
+            if (slideToOnRefresh !== null) {
+                swiper.slideTo(parseInt(slideToOnRefresh));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    /* For iOS */
+    tap-highlight-color: transparent;
+    /* For Android */
+    box-sizing: border-box;
+    user-select: none;
+    outline: none;
+}
+.card i
+{
+    box-shadow: 0 0 15px 2px #DBDBDB;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bkg);
+}
+main {
+    width: 90%;
+    margin: auto;
+    padding: 0 5%;
+    padding-top: 20px;
+    position: relative;
+    width: 100%;
+    background-color: var(--bkg);
+    height: auto;
+}

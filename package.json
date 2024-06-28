@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "firebase": "^10.12.2",
+    "multer": "^1.4.5-lts.1",
+    "ws": "^8.17.1"
+  },
+  "name": "utility-app",
+  "version": "1.0.0",
+  "description": "a web app to puchase data, airtime and utilitybills (more features would be added with time)",
+  "main": "Utility.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hoodmanb/Utility-app.git"
+  },
+  "author": "Nwigiri Joshua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hoodmanb/Utility-app/issues"
+  },
+  "homepage": "https://github.com/Hoodmanb/Utility-app#readme"
+}
