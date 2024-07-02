@@ -63,7 +63,11 @@ async function getProfileData(user = user) {
         return;
     }
 }
-
+const landingPage = (req, res) => {
+    res.render('landingpage', {
+        head: head
+    })
+}
 const dashboard = (req, res) => {
     let user = req.session.user || null;
     //  console.log(user.uid)
@@ -147,5 +151,6 @@ module.exports = {
     data,
     airtime,
     getProfileData,
-    profileSetup
+    profileSetup,
+    landingPage
 }

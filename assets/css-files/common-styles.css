@@ -9,6 +9,8 @@
     box-sizing: border-box;
     user-select: none;
     outline: none;
+    list-style-type: none;
+    border: none;
 }
 .card i
 {

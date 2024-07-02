@@ -1,6 +1,5 @@
 const express = require('express');
 const session = require('express-session');
-//const cookieParser = require('cookie-parser');
 
 const cors = require('cors');
 
@@ -18,6 +17,8 @@ const {
 const getRoutes = require('./controller/getRoutes')
 
 const accountDelete = require('./controller/accDelete')
+
+const sendMail = require('./controller/sendmail')
 
 const loginAuth = require('./controller/authentication/loginAuth');
 
@@ -68,7 +69,7 @@ expApp.use(session({
 expApp.use((req, res, next) => {
     let user = req.session.user
 
-    webSocketData(user)
+    setupWebSocket(wss, user)
 
     req.session.user = null;
     req.session.name = null;
@@ -148,60 +149,55 @@ const authCheck = (req, res, next) => {
 };
 
 
-const webSocketData = async (user) => {
-    if (!user) {
-        console.log('User not connected.');
-        wss.on('connection', function connection(ws) {
-            let dataToSend = {
-            //    message: 'user not logged in'
+const setupWebSocket = (wss, user) => {
+    wss.on('connection',
+        async (ws) => {
+            // Fetch user information in connection event
+            //let user = getUser(); // Assume getUser is a function that gets the user info
+
+            if (!user) {
+                let dataToSend = {
+                    message: 'user not logged in'
+                };
+                ws.send(JSON.stringify(dataToSend));
+                console.log('sent but not logged in');
+            } else {
+                try {
+                    let profileData = await getRoutes.getProfileData(user) || {};
+                    let {
+                        names,
+                        gender,
+                        phone
+                    } = profileData;
+
+                    let dataToSend = {
+                        displayName: user.displayName,
+                        names: names,
+                        gender: gender,
+                        phone: phone,
+                        email: user.email,
+                        photoURL: user.photoURL
+                    };
+
+                    ws.send(JSON.stringify(dataToSend));
+                    console.log('Client connected and data sent.', user.uid);
+
+                    // Handle client closing connection
+                    ws.on('close', function() {
+                        console.log('Client disconnected.');
+                    });
+
+                } catch (error) {
+                    console.error('Error fetching profile data:', error);
+                }
             }
-            ws.send(JSON.stringify(dataToSend));
-            console.log('sent but not logged In')
-        })
-        return;
-    }
-
-    try {
-        let profileData = await getRoutes.getProfileData(user) || {};
-        let {
-            names,
-            gender,
-            phone
-        } = profileData;
-
-        wss.on('connection', function connection(ws) {
-            console.log('Client connected.', user.uid);
-
-            let dataToSend = {
-                displayName: user.displayName,
-                names: names,
-                // Make sure 'names' is defined somewhere
-                gender: gender,
-                // Make sure 'gender' is defined somewhere
-                phone: phone,
-                // Make sure 'phone' is defined somewhere
-                email: user.email,
-                photoURL: user.photoURL
-            };
-            console.log('got to the check')
-
-
-
-            ws.send(JSON.stringify(dataToSend));
-            // Handle client closing connection
-            ws.on('close', function() {
-                console.log('Client disconnected.');
-            });
         });
 
-        console.log('WebSocket setup complete.');
-
-    } catch (error) {
-        console.error('Error fetching profile data:',
-            error);
-    }
+    console.log('WebSocket setup complete.');
 };
 
+// Call this function once to set up the WebSocket server
+setupWebSocket(wss);
 
 //webSocketData(user)
 //expApp.use(webSocketData)
@@ -241,6 +237,8 @@ expApp.post("/updateUserInfo", restricted, userData.updateUserData)
 
 expApp.post("/profileSetup", restricted, upload.single('imageFile'), setUserData.setupProfile)
 
+expApp.post('/sendmail', sendMail.sendMail);
+
 //expApp.get("/setprofile", getRoutes.profileSetup);
 
 expApp.get('/api/logInData', loginAuth.logInDataApi)
@@ -250,6 +248,8 @@ expApp.get('/logout', logoutAuth.logOut)
 expApp.get('/accountDelete', accountDelete.accountDelete)
 
 expApp.get('/api/Data', email_PasswordAuth.signUpDataApi)
+
+expApp.get('/', getRoutes.landingPage);
 
 expApp.get("/sign-up", getRoutes.signUp);
 
@@ -267,7 +267,7 @@ expApp.get("/data", getRoutes.data);
 
 expApp.get("/airtime", getRoutes.airtime);
 
-expApp.get("/", getRoutes.dashboard);
+expApp.get("/dashboard", getRoutes.dashboard);
 
 expApp.use((err, req, res, next) => {
     console.error('Nwigiri', err.stack);

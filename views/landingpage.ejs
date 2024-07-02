@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- head %>
+    <title>Landing page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/assets/css-files/common-styles.css">
+    <link rel="stylesheet" href="/assets/css-files/landingpage.css">
+</head>
+<body>
+    <button class="theme" role="switch" aria-label="light/dark mode" style="display:none"></button>
+    <div class="navbar">
+        <header>
+            Nwigiri Telecoms
+        </header>
+        <!--burger icon and dropdown-->
+        <div class="dropdown" id="burger-container" onclick="toggleDropdown()">
+            <div id="burger">
+                <span>&nbsp;</span>
+                <span>&nbsp;</span>
+                <span>&nbsp;</span>
+                <span>&nbsp;</span>
+            </div>
+            <div class="dropdown-content">
+                <div class="">
+                    <a href="/dashboard" onclick="closeDropdown()">-Dashboard-</a>
+                    <a href="pricing" onclick="closeDropdown()">-pricing-</a>
+                    <a href="sign-up" onclick="closeDropdown()">-Sign Up-</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="image"><img src="/assets/images/internet.jpg"></div>
+
+    <section class="one">
+        <h2 class="handwriting-container handwriting"></h2>
+        <p>
+            Your one-stop shop for fast and reliable airtime, data, cable subscriptions, electricity, and more.
+        </p>
+        <button onclick="location.href='dashboard'" class="started">Get Started</button>
+    </section>
+
+    <section class="two" style="padding-bottom:25em;">
+        <h2 class="header">Our Services</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class=" swiper-slide">
+                    <div class="card">
+                        <i class="material-icons icon">phone_iphone</i>
+                        <h3 class="card-title">Airtime</h3>
+                        <p>
+                            Top-up your mobile airtime instantly.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <i class="material-icons icon">wifi</i>
+                        <h3 class="card-title">Data</h3>
+                        <p>
+                            Purchase data plans at competitive rates.
+                        </p>
+                    </div>
+                </div>
+
+                <div class=" swiper-slide">
+                    <div class="card">
+                        <i class="material-icons icon">tv</i>
+                        <h3 class="card-title">Cable Subscription</h3>
+                        <p>
+                            Renew your cable TV subscription hassle-free.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <i class="material-icons icon">power</i>
+                        <h3 class="card-title">Electricity</h3>
+                        <p>
+                            Pay electricity bills conveniently.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="three">
+        <h2>How It Works</h2>
+        <div class="container">
+
+
+            <div class="step">
+                <h3>Sign Up / Log In</h3>
+                <p>
+                    - <a href="sign-up">Create an account</a> or <a href="log-in">log in</a> to start using &nbsp;&nbsp;our services.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>Choose Service</h3>
+                <p>
+                    - Select the service you need from our wide &nbsp;&nbsp;range of offerings.
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>Make Payment</h3>
+                <p>
+                    - Securely pay for your selected service
+                    &nbsp;&nbsp;using various payment methods.
+                </p>
+            </div>
+            <div class="step">
+                <h3>Receive Confirmation</h3>
+                <p>
+                    - Get instant confirmation and start &nbsp;&nbsp;enjoying our fast, reliable services.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="four">
+    <h2 class="">Pricing Plans</h2>
+    <div class="">
+
+        <div class="plan">
+            <h3 class="">Basic Plan</h3>
+            <p class="price">
+                <b>$10</b>/month
+            </p>
+            <ul class="free">
+                <li class="ok">All Basic Features</li>
+                <li class="ok">Customer Support</li>
+                <li class="not-ok">Discount </li>
+                <li class="not-ok">Special Offers </li>
+                <li class="not-ok">Reward Pool</li>
+                <li class="not-ok">24/7 Support</li>
+            </ul>
+        </div>
+
+        <div class="plan">
+            <h3 class="">Premium Plan</h3>
+            <p class="price">
+                <b>$20</b>/month
+            </p>
+            <ul class="premium">
+                <li class="ok">All Basic Features</li>
+                <li class="ok">Customer Support</li>
+                <li class="ok">Discount </li>
+                <li class="ok">Special Offers</li>
+                <li class="ok">Reward Pool</li>
+                <li class="ok">24/7 Support</li>
+            </ul>
+            <a href="#" class="subscribe">Subscribe</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h2> Contact Us</h2>
+
+    <div class="social-acc">
+
+        <a href="https://x.com/joshua3302"><i class="fab">&#xf081;</i></a>
+
+        <a href="mailto:joshuadebravo@gmail.com"><i class="fa">&#xf199; </i></a>
+
+        <a href="https://github.com/Hoodmanb"><i class="fab">&#xf092;</i></a>
+
+        <a href="https://wa.me/+2347060544433"><i class="fab">&#xf40c;</i></a>
+
+        <a href="#"><i class="fab">&#xf08c;</i></a>
+
+        <a href="tel:+2347060544433"><i class="fas">&#xf87b;</i></a>
+    </div>
+
+    <h6 class="handwriting-container send-msg" style="font-size:1em;"></h6>
+    <h3>Message Us</h3>
+    <form id="form">
+        <input type="name" id="name" name="name" class="input" placeholder="Name" required><br>
+
+        <input type="email" id="email" class="input" placeholder="Email" name="email" required><br>
+
+        <textarea id="message" name="message" placeholder="Message" class="input" rows="5" required></textarea><br>
+
+        <button type="submit" id="submit"></button>
+    </form>
+
+    <hr>
+
+    <div class="below-footer">
+        <div>
+            <ul>
+                <li><a class="" href="#">Privacy Policy</a></li><br>
+                <li><a class="" href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="">
+            <p>
+                © 2024 Nwigiri Telecoms. All rights reserved.
+            </p>
+        </div>
+
+    </div>
+</footer>
+<script src="/assets/js-files/theme.js"></script>
+<script src="/assets/js-files/landingpage.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".swiper", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        loop: true
+    });
+</script>
+</body>
+</html>
