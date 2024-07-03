@@ -1,4 +1,4 @@
-const authObj = require('../../auth')
+const authObj = require('../auth')
 const auth = authObj.auth;
 const app = authObj.app;
 

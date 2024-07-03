@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const path = require('path');
 
 const cors = require('cors');
 
@@ -26,9 +27,9 @@ const logoutAuth = require('./controller/authentication/logoutAuth')
 
 const email_PasswordAuth = require('./controller/authentication/email_PasswordAuth')
 
-const userData = require('./controller/userData/userData')
+const userData = require('./models/userData')
 
-const setUserData = require('./controller/userData/setUserData')
+const setUserData = require('./models/setUserData')
 
 
 const port = 7050;
@@ -36,7 +37,8 @@ const host = '127.0.0.1';
 
 expApp.use(cors());
 expApp.use(express.json());
-expApp.use("/assets", express.static("assets"));
+expApp.set('views', '../views');
+expApp.use(express.static(path.join(__dirname, '../')));
 
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({
@@ -75,8 +77,6 @@ expApp.use((req, res, next) => {
     req.session.name = null;
     req.session.email = null;
     req.session.userId = null;
-
-
 
     next()
 })

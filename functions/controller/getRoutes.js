@@ -3,7 +3,7 @@ const {
     indexhead,
     popUpAlert,
     bootstrap
-} = require('../assets/js-files/partials');
+} = require('../../assets/js-files/partials');
 
 const authObj = require('../auth')
 const auth = authObj.auth;
