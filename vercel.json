@@ -1,23 +1,15 @@
 {
-
-    "version": 2,
-
-    "builds": [{
-
-        "src": "functions/Utility.js",
-
-        "use": "@vercel/node"
-
+  "version": 2,
+  "builds": [
+    {
+      "src": "functions/Utility.js",
+      "use": "@vercel/node"
     }
-
-        1,
-
-        "routes": [{
-
-            "src": "/(.*)",
-
-            "dest": "functions/Utility.js"
-
-        }]
-
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "functions/Utility.js"
     }
+  ]
+}
