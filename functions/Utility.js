@@ -1,144 +1,77 @@
+require('dotenv').config();
 const express = require('express');
-const session = require('express-session');
+const fs = require('fs');
+const https = require('https');
 const path = require('path');
-
 const cors = require('cors');
-
-const expApp = express();
-
-
-const authObj = require('./auth')
-const auth = authObj.auth
-
+const multer = require('multer');
+const bodyParser = require('body-parser');
 const {
     onAuthStateChanged
 } = require("firebase/auth");
-
-
-const getRoutes = require('./controller/getRoutes')
-
-const accountDelete = require('./controller/accDelete')
-
-const sendMail = require('./controller/sendmail')
-
-const loginAuth = require('./controller/authentication/loginAuth');
-
-const logoutAuth = require('./controller/authentication/logoutAuth')
-
-const email_PasswordAuth = require('./controller/authentication/email_PasswordAuth')
-
-const userData = require('./models/userData')
-
-const setUserData = require('./models/setUserData')
-
-
-const port = 7050;
-const host = '127.0.0.1';
-
-expApp.use(cors());
-expApp.use(express.json());
-expApp.set('views', '../views');
-expApp.use(express.static(path.join(__dirname, '../')));
-
 const WebSocket = require('ws');
+
+// Environment Variables
+const port = process.env.PORT || 9090;
+const host = process.env.HOST || 'localhost';
+
+// Initialize Express app
+const app = express();
+
+const httpsServer = https.createServer(app);
+
+// WebSocket Server
 const wss = new WebSocket.Server({
-    port: 2222
+    server: httpsServer
 });
 
-const multer = require('multer')
-const bodyParser = require('body-parser');
+/*const wss = new WebSocket.Server({
+    port: 5050
+});*/
 
-expApp.use(bodyParser.urlencoded({
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use('/assets', express.static(path.join(__dirname, '..', 'assets')));
+app.set('views', path.join(__dirname, '..', 'views')); // Correct views path
+app.set('view engine', 'ejs');
 
-const storage = multer.memoryStorage();
-const upload = multer({
-    storage: storage
-});
+// Firebase Authentication
+const authObj = require('./auth');
+const auth = authObj.auth;
 
-expApp.use(session({
-    secret: 'ijsjjjsjjsjksjdofmklfmkkejkekmekkkfmklmdll',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        secure: false,
-        maxAge: 9999999999999,
-        // SameSite: 'strict' // Uncomment this line for better security
-    }
-}));
+// Route Handlers
+const getRoutes = require('./controller/getRoutes');
+const accountDelete = require('./controller/accDelete');
+const sendMail = require('./controller/sendmail');
+const loginAuth = require('./controller/authentication/loginAuth');
+const logoutAuth = require('./controller/authentication/logoutAuth');
+const email_PasswordAuth = require('./controller/authentication/email_PasswordAuth');
+const userData = require('./models/userData');
+const setUserData = require('./models/setUserData');
 
-expApp.use((req, res, next) => {
-    let user = req.session.user
-
-    setupWebSocket(wss, user)
-
-    req.session.user = null;
-    req.session.name = null;
-    req.session.email = null;
-    req.session.userId = null;
-
-    next()
-})
-
-var userID = null
-//var user = null
-//const profileData = getRoutes.getProfileData(user) || {};
-
+// Authentication Check Middleware
 const authCheck = (req, res, next) => {
     let nextCalled = false;
 
-    onAuthStateChanged(auth,
-        async (user) => {
-            if (nextCalled) return;
-            nextCalled = true;
+    onAuthStateChanged(auth, async (user) => {
+        if (nextCalled) return;
+        nextCalled = true;
 
-            if (user) {
+        if (user) {
+            const profileData = await getRoutes.getProfileData(user) || {};
 
-                const name = user.displayName;
-                const email = user.email;
-                const userId = user.uid;
+            console.log('User is logged in:', user.uid);
+        } else {
 
-                userID = user.uid
-                //user = user
-                //webSocketData(user)
+            console.log("User is not logged in");
+        }
+        next();
+    });
 
-                req.session.userId = userId
-                req.session.name = name;
-                req.session.user = user;
-                req.session.email = email;
-
-
-                const profileData = await getRoutes.getProfileData(user) || {};
-                const {
-                    names,
-                    gender,
-                    phone
-                } = profileData;
-
-                req.session.names = names ? names: null;
-                req.session.gender = gender ? gender: null;
-                req.session.phone = phone? phone: null;
-
-                console.log(names, gender, phone)
-
-                console.log('user is logged in');
-                console.log(user.uid);
-            } else {
-                //user = null
-                userID = null
-
-                req.session.userId = null
-                req.session.name = null
-                req.session.user = null
-                req.session.email = null
-                console.log("User is not logged in");
-            }
-            next();
-        });
-
-
-    // Ensure next is called in case onAuthStateChanged does not invoke its callback
     setTimeout(() => {
         if (!nextCalled) {
             nextCalled = true;
@@ -148,137 +81,91 @@ const authCheck = (req, res, next) => {
         3000); // Adjust timeout duration as needed
 };
 
+app.use(authCheck);
 
-const setupWebSocket = (wss, user) => {
-    wss.on('connection',
-        async (ws) => {
-            // Fetch user information in connection event
-            //let user = getUser(); // Assume getUser is a function that gets the user info
+// WebSocket Connection Handler
+wss.on('connection', (ws) => {
+    console.log('WebSocket client connected.');
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            console.log('displayname :', user.displayName)
+            let profileData = await getRoutes.getProfileData(user) || {};
+            let {
+                names,
+                gender,
+                phone
+            } = profileData;
+            let displayName = user.displayName
 
-            if (!user) {
-                let dataToSend = {
-                    message: 'user not logged in'
-                };
-                ws.send(JSON.stringify(dataToSend));
-                console.log('sent but not logged in');
-            } else {
-                try {
-                    let profileData = await getRoutes.getProfileData(user) || {};
-                    let {
-                        names,
-                        gender,
-                        phone
-                    } = profileData;
+            const dataToSend = {
+                displayName: displayName,
+                names: names,
+                gender: gender,
+                phone: phone,
+                email: user.email,
+                photoURL: user.photoURL
+            };
+            ws.send(JSON.stringify(dataToSend));
+        } else {
+            ws.send(JSON.stringify({
+                message: 'User not logged in'
+            }));
+        }
+    })
 
-                    let dataToSend = {
-                        displayName: user.displayName,
-                        names: names,
-                        gender: gender,
-                        phone: phone,
-                        email: user.email,
-                        photoURL: user.photoURL
-                    };
-
-                    ws.send(JSON.stringify(dataToSend));
-                    console.log('Client connected and data sent.', user.uid);
-
-                    // Handle client closing connection
-                    ws.on('close', function() {
-                        console.log('Client disconnected.');
-                    });
-
-                } catch (error) {
-                    console.error('Error fetching profile data:', error);
-                }
-            }
+    ws.on('message',
+        (message) => {
+            console.log(`Received: ${message}`);
+            ws.send(`Hello, you sent -> ${message}`);
         });
 
-    console.log('WebSocket setup complete.');
-};
-
-// Call this function once to set up the WebSocket server
-setupWebSocket(wss);
-
-//webSocketData(user)
-//expApp.use(webSocketData)
-
-
-
-const restricted = (req, res, next) => {
-    let user = req.session.user
-    // webSocketData(user)
-
-    onAuthStateChanged(auth,
-        (user) => {
-            if (!user) {
-                console.log('before return');
-                res.status(401).redirect('/log-in');
-                return
-            } else {
-                console.log('got to the end');
-                next();
-            }
+    ws.on('close',
+        () => {
+            console.log('WebSocket client disconnected.');
         });
-}
-
-//expApp.use(webSocketData)
-
-expApp.use(authCheck);
-
-//expApp.use(restricted, getRoutes.getProfileData)
-
-expApp.set("view engine", "ejs");
-
-expApp.post("/login", loginAuth.logIn,)
-
-expApp.post("/create", email_PasswordAuth.signUp)
-
-expApp.post("/updateUserInfo", restricted, userData.updateUserData)
-
-expApp.post("/profileSetup", restricted, upload.single('imageFile'), setUserData.setupProfile)
-
-expApp.post('/sendmail', sendMail.sendMail);
-
-//expApp.get("/setprofile", getRoutes.profileSetup);
-
-expApp.get('/api/logInData', loginAuth.logInDataApi)
-
-expApp.get('/logout', logoutAuth.logOut)
-
-expApp.get('/accountDelete', accountDelete.accountDelete)
-
-expApp.get('/api/Data', email_PasswordAuth.signUpDataApi)
-
-expApp.get('/', getRoutes.landingPage);
-
-expApp.get("/sign-up", getRoutes.signUp);
-
-expApp.get("/setprofile", getRoutes.profileSetup);
-
-expApp.get("/log-in", getRoutes.logIn);
-
-expApp.get("/partials", getRoutes.partials);
-
-expApp.get("/partials/profile", getRoutes.partials_profile);
-
-expApp.get("/partials/home", getRoutes.partials_home)
-
-expApp.get("/data", getRoutes.data);
-
-expApp.get("/airtime", getRoutes.airtime);
-
-expApp.get("/dashboard", getRoutes.dashboard);
-
-expApp.use((err, req, res, next) => {
-    console.error('Nwigiri', err.stack);
-    console.error('Nwigiri', err.message);
-    next()
 });
 
-expApp.use((req, res, next) => {
+// Route Definitions
+app.post("/login", loginAuth.logIn);
+app.post("/create", email_PasswordAuth.signUp);
+app.post("/updateUserInfo", authCheck, userData.updateUserData);
+app.post("/profileSetup", authCheck, multer({
+    storage: multer.memoryStorage()
+}).single('imageFile'), setUserData.setupProfile);
+app.post('/sendmail', sendMail.sendMail);
+app.get('/api/logInData', loginAuth.logInDataApi);
+app.get('/logout', logoutAuth.logOut);
+app.get('/accountDelete', accountDelete.accountDelete);
+app.get('/api/Data', email_PasswordAuth.signUpDataApi);
+app.get('/', getRoutes.landingPage);
+app.get("/sign-up", getRoutes.signUp);
+app.get("/setprofile", getRoutes.profileSetup);
+app.get("/log-in", getRoutes.logIn);
+app.get("/partials", getRoutes.partials);
+app.get("/partials/profile", getRoutes.partials_profile);
+app.get("/partials/home", getRoutes.partials_home);
+app.get("/data", getRoutes.data);
+app.get("/airtime", getRoutes.airtime);
+app.get("/dashboard", getRoutes.dashboard);
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+    console.error('Error:',
+        err.stack);
+    console.error('Message:',
+        err.message);
+    next();
+});
+
+app.use((req, res, next) => {
     return res.status(404).render('404');
 });
 
-expApp.listen(port, () => {
-    console.log(`Access Server On http://localhost:${port}`);
+// Start the server
+httpsServer.listen(port, () => {
+    console.log(`Access Server On https://${host}:${port}`);
 });
+
+/*app.listen(port, () => {
+    console.log(`Access Server On http://${host}:${port}`);
+});*/

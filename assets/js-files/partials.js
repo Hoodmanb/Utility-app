@@ -4,12 +4,8 @@ const head = `
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!--font awesome cdn-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!--my personal font-awesome cdn -->
 <script src="https://kit.fontawesome.com/11b6095cfd.js" crossorigin="anonymous"></script>
-
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="/assets/css-files/theme.css">
 

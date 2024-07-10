@@ -32,7 +32,7 @@ $(document).ready(() => {
 
     function handleContinueClick() {
         hideAlert();
-        window.location.href = '/';
+        window.location.href = '/dashboard';
     }
 
     const dataCheck = (data) => {

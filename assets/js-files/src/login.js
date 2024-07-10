@@ -49,7 +49,7 @@ $(document).ready(() => {
 
   const dataCheck = (data) => {
     if (data === 'Sucessful!') {
-      window.location.href = '/';
+      window.location.href = '/dashboard';
     } else {
       // Handle error case
       $('#res-message').text(data);

@@ -63,6 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (continueBtn) {
         continueBtn.addEventListener('click', continueAction);
     }
+    
+    const skip = document.getElementById('skip');
+    skip.addEventListener('click', () => {
+        window.location.href = 'dashboard'
+    })
 });
 
 
@@ -104,7 +109,7 @@ $('#done').on('click', function() {
         success: function(response) {
             console.log('response:', response)
             if (response.message === 'Successful') {
-                window.location.href = '/'
+                window.location.href = 'dashboard'
             }
         },
         error: function(error) {

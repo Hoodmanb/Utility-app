@@ -69,7 +69,7 @@ const landingPage = (req, res) => {
     })
 }
 const dashboard = (req, res) => {
-    let user = req.session.user || null;
+    let user =  null;
     //  console.log(user.uid)
     res.render("index",
         {

@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let socket;
 
     function connectWebSocket() {
-        socket = new WebSocket('ws://localhost:2222');
+        socket = new WebSocket('wss://utility-app-gamma.vercel.app');
+        //socket = new WebSocket('ws://localhost:5050');
 
         socket.onopen = function() {
             console.log('WebSocket connection established.');
