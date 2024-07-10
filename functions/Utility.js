@@ -9,7 +9,6 @@ const bodyParser = require('body-parser');
 const {
     onAuthStateChanged
 } = require("firebase/auth");
-const WebSocket = require('ws');
 
 // Environment Variables
 const port = process.env.PORT || 9090;
@@ -18,16 +17,7 @@ const host = process.env.HOST || 'localhost';
 // Initialize Express app
 const app = express();
 
-const httpsServer = https.createServer(app);
-
-// WebSocket Server
-const wss = new WebSocket.Server({
-    server: httpsServer
-});
-
-/*const wss = new WebSocket.Server({
-    port: 5050
-});*/
+//const httpsServer = https.createServer(app);
 
 // Middleware
 app.use(cors());
@@ -83,47 +73,38 @@ const authCheck = (req, res, next) => {
 
 app.use(authCheck);
 
-// WebSocket Connection Handler
-wss.on('connection', (ws) => {
-    console.log('WebSocket client connected.');
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            console.log('displayname :', user.displayName)
-            let profileData = await getRoutes.getProfileData(user) || {};
-            let {
-                names,
-                gender,
-                phone
-            } = profileData;
-            let displayName = user.displayName
+/*const dynamicContent = (req, res) => {
+    let message = {
+        mess: null
+    };
+    onAuthStateChanged(auth,
+        async (user) => {
+            if (user) {
+                console.log('displayname :', user.displayName)
+                let profileData = await getRoutes.getProfileData(user) || {};
+                let {
+                    names,
+                    gender,
+                    phone
+                } = profileData;
+                let displayName = user.displayName
 
-            const dataToSend = {
-                displayName: displayName,
-                names: names,
-                gender: gender,
-                phone: phone,
-                email: user.email,
-                photoURL: user.photoURL
-            };
-            ws.send(JSON.stringify(dataToSend));
-        } else {
-            ws.send(JSON.stringify({
-                message: 'User not logged in'
-            }));
-        }
-    })
-
-    ws.on('message',
-        (message) => {
-            console.log(`Received: ${message}`);
-            ws.send(`Hello, you sent -> ${message}`);
+                const dataToSend = {
+                    displayName: displayName,
+                    names: names,
+                    gender: gender,
+                    phone: phone,
+                    email: user.email,
+                    photoURL: user.photoURL
+                };
+                res.json(dataToSend)
+            } else {
+                res.json(message)
+            }
         });
+}*/
 
-    ws.on('close',
-        () => {
-            console.log('WebSocket client disconnected.');
-        });
-});
+
 
 // Route Definitions
 app.post("/login", loginAuth.logIn);
@@ -137,6 +118,19 @@ app.get('/api/logInData', loginAuth.logInDataApi);
 app.get('/logout', logoutAuth.logOut);
 app.get('/accountDelete', accountDelete.accountDelete);
 app.get('/api/Data', email_PasswordAuth.signUpDataApi);
+
+
+// Sample data endpoint
+//app.get('/api/dynamic-data', dynamicContent)
+
+
+// Sample data endpoint
+/*app.get('/api/dynamic-data', (req, res) => {
+    const names = 'Nwigiri'
+    res.send(names);
+});*/
+
+
 app.get('/', getRoutes.landingPage);
 app.get("/sign-up", getRoutes.signUp);
 app.get("/setprofile", getRoutes.profileSetup);
@@ -162,10 +156,10 @@ app.use((req, res, next) => {
 });
 
 // Start the server
-httpsServer.listen(port, () => {
-    console.log(`Access Server On https://${host}:${port}`);
-});
-
-/*app.listen(port, () => {
-    console.log(`Access Server On http://${host}:${port}`);
+/*httpsServer.listen(port, () => {
+console.log(`Access Server On https://${host}:${port}`);
 });*/
+
+app.listen(port, () => {
+    console.log(`Access Server On http://${host}:${port}`);
+});

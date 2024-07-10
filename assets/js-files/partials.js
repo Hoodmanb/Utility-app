@@ -10,16 +10,16 @@ const head = `
 <link rel="stylesheet" href="/assets/css-files/theme.css">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>`
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>`
 
 const indexhead = `
 <title>Dashboard</title>
 <!--swiperjs cdn -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+<script src="https://unpkg.com/htmx.org@2.0.0"></script>
 <!--internal stylesheet-->
-  <link rel="stylesheet" href="/assets/css-files/common-styles.css">
+<link rel="stylesheet" href="/assets/css-files/common-styles.css">
 <link rel="stylesheet" href="/assets/css-files/history.css">
 <link rel="stylesheet" href="/assets/css-files/profile.css">
 <link rel="stylesheet" href="/assets/css-files/home.css">
@@ -40,14 +40,14 @@ const popUpAlert = `
 <button id="okButton" class="ok-btn"></button>
 </div>`
 
-const bootstrap =` <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+const bootstrap = ` <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>`
 
 
 
 module.exports = {
-  head,
-  indexhead,
-  popUpAlert,
-  bootstrap
+    head,
+    indexhead,
+    popUpAlert,
+    bootstrap
 };
