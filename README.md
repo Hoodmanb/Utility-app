@@ -19,3 +19,17 @@ First you need to make this repository available in your local machine. *Prerequ
 ![Terminal Screenshot](./assets/images/link.jpg)
 
 Utility.js is the app entry point, you don't need to tell nodemon what the file extension is hense *nodemon Utility*
+
+![landingpage Screenshot](./assets/images/landingpage.jpg)
+
+*Acknowledgment*
+Might come as a supprise to some great minded individuals who looked at a problem and developed a solution, as of the time of the creation of this README file I am not financially able to get a system but with the help of projects that some brilliant minds have developed I am able to code and learn a lot with a moblie device, special thanks to the creators of Termux Android Emulator, Android Code Editor, Acode. And special thanks to Julien @Alx Africa and all Alx team members.
+
+*Ps*
+This project was inspired by the thought of how difficult it is/was for newbies to purchase data for coding. The app is aimed to simplify and reduce the cost. The journey to becoming a tech nerd gets difficult as one makes progress, and without sheer will, it is nearly impossible to make it till the end...
+
+*Authur*
+Nwigiri Joshua
+
+LinkedIn - https://www.linkedin.com/in/joshua7281
+X - https://x.com/joshua3302
