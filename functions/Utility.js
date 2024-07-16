@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
-const https = require('https');
+// const https = require('https');
 const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
@@ -10,14 +10,14 @@ const {
     onAuthStateChanged
 } = require("firebase/auth");
 
-// Environment Variables
-const port = process.env.PORT || 9090;
-const host = process.env.HOST || 'localhost';
+// // Environment Variables
+// const port = process.env.PORT || 9090;
+// const host = process.env.HOST || 'localhost';
 
 // Initialize Express app
 const app = express();
 
-//const httpsServer = https.createServer(app);
+// const httpsServer = https.createServer(app);
 
 // Middleware
 app.use(cors());
@@ -191,10 +191,12 @@ app.use((req, res, next) => {
 
 
 // Start the server
-/*httpsServer.listen(port, () => {
-console.log(`Access Server On https://${host}:${port}`);
+// httpsServer.listen(port, () => {
+// console.log(`Access Server On ${port}`);
+// });
+
+/*app.listen(port, () => {
+    console.log(`Access Server On http://${host}:${port}`);
 });*/
 
-app.listen(port, () => {
-    console.log(`Access Server On http://${host}:${port}`);
-});
+module.exports = app
