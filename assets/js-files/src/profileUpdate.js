@@ -8,6 +8,7 @@ $(document).ready(() => {
     const profileForm = $('#profileForm');
     const updateForm = $('#update-form');
     const itemToEdit = $('#itemToEdit');
+    const greet = document.getElementById('greet')
 
     let type = {
         field: ''
@@ -23,7 +24,8 @@ $(document).ready(() => {
         ['Update Name', 'Name'],
         ['Update Number', 'Number'],
         ['Update Display Name', 'Display Name'],
-        ['Update Gender', 'Gender']
+        ['Update Gender', 'Gender'],
+        ['Update Country', 'Country']
     ];
 
     editPop.each(function(index) {
@@ -42,25 +44,47 @@ $(document).ready(() => {
         });
     });
 
+    function fetchData(toEdit, data) {
+        const element = document.getElementById(`socket-${toEdit}`);
+
+        if (toEdit === 'photoURL') {
+            element.src = data[toEdit]
+        } else if (toEdit === 'displayName') {
+            element.textContent = data[toEdit]
+            greet.textContent = `Hello ${data[toEdit]}`
+        } else {
+            element.textContent = data[toEdit];
+        }
+
+    }
+
+
+
     async function updateProfile(form, toEdit) {
+
         const fd = new FormData(form[0]); // form[0] to get the DOM element
-        fd.append('type', JSON.stringify(toEdit));
+        fd.append('type',
+            JSON.stringify(toEdit));
 
         const urlEncoded = new URLSearchParams(fd).toString();
 
         try {
-            const response = await fetch('/updateUserInfo', {
-                method: 'POST',
-                body: urlEncoded,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
+            const response = await fetch('/updateUserInfo',
+                {
+                    method: 'POST',
+                    body: urlEncoded,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.text();
+            const data = await response.json();
+            fetchData(toEdit, data)
             console.log('Response from server:', data);
+            console.log(toEdit)
+
 
 
         } catch (error) {

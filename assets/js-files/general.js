@@ -1,4 +1,4 @@
-const largeButtons = document.querySelectorAll('.trans-btn');
+/*const largeButtons = document.querySelectorAll('.trans-btn');
 
 largeButtons.forEach(largeButton => {
     largeButton.addEventListener('click', () => {
@@ -14,4 +14,4 @@ largeButtons.forEach(largeButton => {
         // Immediately set the background color to black
         largeButton.style.backgroundColor = 'black';
     });
-});
+});*/

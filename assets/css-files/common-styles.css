@@ -12,11 +12,6 @@
     list-style-type: none;
     border: none;
 }
-.card i
-{
-    box-shadow: 0 0 15px 2px #DBDBDB;
-}
-
 a {
     text-decoration: none;
     color: inherit;

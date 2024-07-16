@@ -1,7 +1,9 @@
+//firebase auth object
 const authObj = require('../auth');
 const auth = authObj.auth;
 const app = authObj.app;
 
+//firebase functions
 const {
     getFirestore,
     doc,
@@ -9,7 +11,7 @@ const {
 } = require('firebase/firestore');
 
 const {
-  updateProfile
+    updateProfile
 } = require("firebase/auth");
 
 const {
@@ -22,6 +24,7 @@ const {
 const storage = getStorage(app);
 const firestore = getFirestore(app);
 
+//function to setup user credentials
 async function setupProfile(req, res) {
     const {
         names,
@@ -33,12 +36,13 @@ async function setupProfile(req, res) {
     const user = auth.currentUser;
 
     if (req.file) {
-        
+
         const buffer = req.file.buffer;
-        
+        //upload the image file to firebase storage
         const storageRef = ref(storage, 'user_photos/' + user.uid + '/profile-pics');
         const uploadTask = uploadBytesResumable(storageRef, buffer);
 
+        //show file upload progress on the console
         uploadTask.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -48,6 +52,7 @@ async function setupProfile(req, res) {
                 console.error('Upload failed:', error);
             },
             () => {
+                //get the image file url
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log('File available at', downloadURL);
                     // Example: Update user profile with photo URL
@@ -81,6 +86,7 @@ async function setupProfile(req, res) {
         });
     }
 
+    //set user data or null values if non are provided
     try {
         const userRef = doc(firestore, 'users', user.uid);
 
@@ -88,8 +94,8 @@ async function setupProfile(req, res) {
             uid: user.uid,
             names: names || null,
             phone: number || null,
-            country: country || null,
-            gender: gender || null
+            gender: gender || null,
+            country: country || null
         }, {
             merge: true
         });

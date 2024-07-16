@@ -1,7 +1,6 @@
 const {
     head,
     indexhead,
-    popUpAlert,
     bootstrap
 } = require('../../assets/js-files/partials');
 
@@ -45,12 +44,15 @@ async function getProfileData(user = user) {
             console.log(userInfo.names);
             console.log("Document data:", docSnap.data());
             names = userInfo.names ? userInfo.names: '';
-            gender = userInfo.gender ? userInfo.gender: '';
             phone = userInfo.phone ? userInfo.phone: '';
+            gender = userInfo.gender ? userInfo.gender: '';
+            country = userInfo.country ? userInfo.country: '';
+            
             return {
                 names,
+                phone,
                 gender,
-                phone
+                country
             }
             //next();
         } else {
@@ -63,6 +65,7 @@ async function getProfileData(user = user) {
         return;
     }
 }
+
 const landingPage = (req, res) => {
     res.render('landingpage', {
         head: head
@@ -83,7 +86,6 @@ const signUp = (req, res) => {
     res.render("sign-up",
         {
             head: head,
-            popUpAlert: popUpAlert,
             bootstrap: bootstrap
         });
 }
@@ -92,7 +94,6 @@ const logIn = (req, res) => {
     res.render("log-in",
         {
             head: head,
-            popUpAlert: popUpAlert,
             bootstrap: bootstrap
         });
 }

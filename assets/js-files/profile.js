@@ -14,18 +14,6 @@ $(document).ready(function() {
 
     const overlay = document.getElementById('overlay');
     
-    $('#prof-login').click(function() {
-        window.location.href = '/log-in'
-    })
-
-    function logoutHandler() {
-        window.location.href = "/logout";
-    }
-
-    $('#prof-logout').click(function() {
-        logoutHandler();
-    });
-    $('#prof-logout').attr('method', 'GET');
 
     $("#delete").click(function() {
         overlay.style.display = 'block';

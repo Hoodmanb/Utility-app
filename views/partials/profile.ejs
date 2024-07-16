@@ -11,7 +11,7 @@
 
         <section id="profile">
             <div class="profile-img">
-                <img src="" id="socket-profileImage">
+                <img src="/assets/images/f7befea457f0a186b1637212bb9bb4b6.jpg" id="socket-photoURL">
                 <span class="edit"><i style="font-size:20px" class="fa">&#xf040;</i></span>
             </div>
             <div class="popup-card" id="popup-card">
@@ -38,11 +38,16 @@
                     </tr>
                     <tr>
                         <td class="tleft">Display Name</td>
-                        <td class="tright"> <b class="null" id="socket-displayName"></b><i id="displayname" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
+                        <td class="tright"> <b class="null" id="socket-displayName"></b><i id="displayName" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
                     </tr>
                     <tr>
                         <td class="tleft">Gender</td>
                         <td class="tright"> <b class="null" id="socket-gender"></b><i id="gender" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
+                    </tr>
+                    <tr>
+                        <td class="tleft">Country</td>
+                        <td class="tright"> <b class="null"
+                            id="socket-country"></b><i id="country" style="font-size:15px" class="fa editPop">&#xf040;</i></td>
                     </tr>
                     <tr>
                         <td class="tleft">Email</td>
@@ -135,18 +140,8 @@
                         </td>
                     </tr>
                 </table>
-                <div class="pro">
-                    <% if (user !== null) {
-                        %>
-                        <button style="background-color:#dc3545" id="delete" class="delete"> <i class="fa-solid fa-trash"></i>&nbsp;Delete Account</button>
+                <div class="pro" id="pro">
 
-                        <button style="background-color:#dc3545;" id="prof-logout" class="prof-logout">  <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;Logout</button>
-                        <%
-                    } else {
-                        %>
-                        <button style="background-color:green" id="prof-login" class="prof-login">  <i class="fa-solid fa-right-to-bracket"></i>&nbsp;LogIn</button>
-                        <%
-                    } %>
                 </div>
             </div>
         </section>

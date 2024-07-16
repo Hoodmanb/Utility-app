@@ -6,6 +6,7 @@
 </head>
 <body>
 
+    <!--using ejs to eject each of the three navigation sections into this file-->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -21,16 +22,17 @@
         </div>
 
     </div>
-
+    <!--navigation icons-->
     <div class="swiper-pagination"></div>
 
 
-    <script src="/assets/js-files/index.js"></script>
+    <script src="/assets/js-files/src/authState.js"></script>
     <script src="/assets/js-files/theme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/assets/js-files/src/webSocket.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script defer>
+        //swiper js setup
         var menu = ['&#xe88a;', '&#xe889;', '&#xe7fd;'];
         var swiper = new Swiper(".mySwiper", {
             autoHeight: true,

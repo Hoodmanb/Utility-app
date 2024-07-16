@@ -19,6 +19,7 @@ const {
 
 
 const firestore = getFirestore(app);
+let data;
 
 /*const isRestricted = (req, res, next, user, redirect) => {
     if (user === null) {
@@ -28,7 +29,7 @@ const firestore = getFirestore(app);
     }
 }*/
 
-async function updateUserDetails(user, field, value) {
+async function updateUserDetails(res, user, field, value) {
     try {
         if (!user || !user.uid) {
             throw new Error('User object is undefined or does not have a uid property');
@@ -50,68 +51,78 @@ async function updateUserDetails(user, field, value) {
                             return {
                                 phone: v
                             };
-                            default:
-                                console.log(`${f} not found okay`);
-                                return null;
-                            }
-                    }
+                            case 'country':
+                                return {
+                                    country: v
+                                };
+                                default:
+                                    console.log(`${f} not found okay`);
+                                    return null;
+                                }
+                        }
 
-                    // Create a document reference in Firestore
-                    const userRef = doc(firestore, 'users', user.uid);
+                        // Create a document reference in Firestore
+                        const userRef = doc(firestore, 'users', user.uid);
 
-                    // Use setDoc to create or update the document
-                    await setDoc(userRef, {
-                        uid: user.uid,
-                        ...returnedField(field, value)
-                }, {
-                        merge: true
-                });
+                        // Use setDoc to create or update the document
+                        await setDoc(userRef, {
+                            uid: user.uid,
+                            ...returnedField(field, value)
+                    }, {
+                            merge: true
+                    });
 
-            console.log('User created and details added to Firestore');
-        } catch (error) {
-            console.error('Error creating user:', error.message);
-        }
-    }
-
-
-
-    async function updateDisplayName(user, newDisplayName) {
-        try {
-            await updateProfile(user, {
-                displayName: newDisplayName
-        });
-        console.log("Display name updated successfully!");
-    } catch (error) {
-        console.error("Error updating display name:", error);
-    }
-}
-
-
-const updateUserData = (req, res, next) => {
-
-    onAuthStateChanged(auth, (user) => {
-
-        //isRestricted(req, res, next, user, 'log-in')
-        if (user) {
-
-            let field = JSON.parse(req.body.type);
-            let value = req.body.itemToEdit;
-            console.log(value);
-            //console.log(field)
-            if (field === 'displayname') {
-                updateDisplayName(user, value)
-            } else {
-                updateUserDetails(user, field, value)
+                console.log('User created and details added to Firestore');
+                data = returnedField(field, value)
+                res.json(data)
+            } catch (error) {
+                console.error('Error creating user:', error.message);
             }
-        } else {
-            return res.redirect('log-in');
         }
 
-        //getProfileData(user.uid)
-    })
-}
 
 
-module.exports = {
-    updateUserData
-}
+        async function updateDisplayName(res, user, newDisplayName) {
+            try {
+                await updateProfile(user, {
+                    displayName: newDisplayName
+            });
+            console.log("Display name updated successfully!");
+            data = {
+                displayName: newDisplayName
+            }
+            return res.json(data)
+        } catch (error) {
+            console.error("Error updating display name:", error);
+        }
+    }
+
+
+    const updateUserData = (req, res, next) => {
+
+        onAuthStateChanged(auth, (user) => {
+
+            //isRestricted(req, res, next, user, 'log-in')
+            if (user) {
+
+                let field = JSON.parse(req.body.type);
+                let value = req.body.itemToEdit;
+                console.log(value);
+                //console.log(field)
+                if (field === 'displayName') {
+                    updateDisplayName(res, user, value)
+                } else {
+                    updateUserDetails(res, user, field, value)
+                }
+            } else {
+                return res.redirect('log-in');
+            }
+
+            //getProfileData(user.uid)
+        })
+    }
+
+
+    module.exports = {
+        updateUserData
+    }

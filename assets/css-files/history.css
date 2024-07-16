@@ -28,6 +28,7 @@
 }
 .search::placeholder{
   font-size: large;
+  color: var(--text);
 }
 .date {
   background-color: #7193A4;

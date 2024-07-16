@@ -35,125 +35,160 @@ const auth = authObj.auth;
 
 // Route Handlers
 const getRoutes = require('./controller/getRoutes');
+
 const accountDelete = require('./controller/accDelete');
+
 const sendMail = require('./controller/sendmail');
+
 const loginAuth = require('./controller/authentication/loginAuth');
+
 const logoutAuth = require('./controller/authentication/logoutAuth');
+
 const email_PasswordAuth = require('./controller/authentication/email_PasswordAuth');
+
 const userData = require('./models/userData');
+
 const setUserData = require('./models/setUserData');
+
 
 // Authentication Check Middleware
 const authCheck = (req, res, next) => {
-    let nextCalled = false;
-
     onAuthStateChanged(auth, async (user) => {
-        if (nextCalled) return;
-        nextCalled = true;
-
-        if (user) {
-            const profileData = await getRoutes.getProfileData(user) || {};
-
-            console.log('User is logged in:', user.uid);
-        } else {
-
-            console.log("User is not logged in");
+        if (!res.headersSent) {
+            if (user) {
+                next()
+            } else {
+                return res.render('log-in')
+            }
         }
-        next();
     });
+}
 
-    setTimeout(() => {
-        if (!nextCalled) {
-            nextCalled = true;
-            next();
-        }
-    },
-        3000); // Adjust timeout duration as needed
-};
 
-app.use(authCheck);
-
-/*const dynamicContent = (req, res) => {
-    let message = {
-        mess: null
-    };
+const dynamicData = (req, res) => {
+    //let message
     onAuthStateChanged(auth,
         async (user) => {
-            if (user) {
-                console.log('displayname :', user.displayName)
-                let profileData = await getRoutes.getProfileData(user) || {};
-                let {
-                    names,
-                    gender,
-                    phone
-                } = profileData;
-                let displayName = user.displayName
+            if (!res.headersSent) {
+                if (user) {
+                    //console.log('displayname :', user.displayName)
+                    let profileData = await getRoutes.getProfileData(user) || {};
+                    let {
+                        names,
+                        phone,
+                        gender,
+                        country
 
-                const dataToSend = {
-                    displayName: displayName,
-                    names: names,
-                    gender: gender,
-                    phone: phone,
-                    email: user.email,
-                    photoURL: user.photoURL
-                };
-                res.json(dataToSend)
-            } else {
-                res.json(message)
+                    } = profileData;
+                    let displayName = user.displayName
+
+                    const dataToSend = {
+                        names: names,
+                        phone: phone,
+                        displayName: displayName,
+                        gender: gender,
+                        country: country,
+                        email: user.email,
+                        photoURL: user.photoURL
+                    };
+                    return res.json(dataToSend)
+                } else {
+                    return res.json({
+                        message: 'User is not logged in'
+                    })
+                }
+
             }
         });
-}*/
+}
 
+let logout = {
+    state: '#logout',
+    view: `<button id="logout" style="background-color:#dc3545;" class="auth">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp; Logout
+    </button>`,
+    remove:`<button style="background-color:#dc3545" id="delete" class="delete"> <i class="fa-solid fa-trash"></i>&nbsp;Delete Account</button>`,
+    auth:`<button style="background-color:#dc3545;" id="prof-logout" class="prof-logout">  <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;Logout</button>`,
+    authState:'#prof-logout'
+};
+
+let login = {
+    state: '#login',
+    view: `<button class="auth" id="login">
+    <i class="fa-solid fa-right-to-bracket"></i> &nbsp; Login
+    </button>`,
+    auth:`<button style="background-color:green" id="prof-login" class="prof-login">  <i class="fa-solid fa-right-to-bracket"></i>&nbsp;LogIn</button>`,
+    authState:'#prof-login'
+};
+
+const isUser = (req, res) => {
+    onAuthStateChanged(auth,
+        async (user) => {
+            if (!res.headersSent) {
+                if (user) {
+                    return res.json(logout);
+                } else {
+                    return res.json(login);
+                }
+            }
+        });
+};
 
 
 // Route Definitions
 app.post("/login", loginAuth.logIn);
+
 app.post("/create", email_PasswordAuth.signUp);
-app.post("/updateUserInfo", authCheck, userData.updateUserData);
-app.post("/profileSetup", authCheck, multer({
+
+app.post("/updateUserInfo", userData.updateUserData);
+
+app.post("/profileSetup", multer({
     storage: multer.memoryStorage()
 }).single('imageFile'), setUserData.setupProfile);
+
 app.post('/sendmail', sendMail.sendMail);
-app.get('/api/logInData', loginAuth.logInDataApi);
+
 app.get('/logout', logoutAuth.logOut);
+
 app.get('/accountDelete', accountDelete.accountDelete);
-app.get('/api/Data', email_PasswordAuth.signUpDataApi);
-
 
 // Sample data endpoint
-//app.get('/api/dynamic-data', dynamicContent)
+app.get('/api/dynamic-data', dynamicData)
 
-
-// Sample data endpoint
-/*app.get('/api/dynamic-data', (req, res) => {
-    const names = 'Nwigiri'
-    res.send(names);
-});*/
-
+app.get('/isUser', isUser)
 
 app.get('/', getRoutes.landingPage);
+
 app.get("/sign-up", getRoutes.signUp);
+
 app.get("/setprofile", getRoutes.profileSetup);
+
 app.get("/log-in", getRoutes.logIn);
+
 app.get("/partials", getRoutes.partials);
+
 app.get("/partials/profile", getRoutes.partials_profile);
+
 app.get("/partials/home", getRoutes.partials_home);
+
 app.get("/data", getRoutes.data);
+
 app.get("/airtime", getRoutes.airtime);
+
 app.get("/dashboard", getRoutes.dashboard);
 
-// Error Handling Middleware
+// General Error Handling Middleware
 app.use((err, req, res, next) => {
-    console.error('Error:',
-        err.stack);
-    console.error('Message:',
-        err.message);
-    next();
+    console.error('Error:', err.stack);
+    console.error('Message:', err.message);
+    res.status(500).render('500'); // Assuming you have a 500 error template
 });
 
+// 404 Error Handling Middleware
 app.use((req, res, next) => {
-    return res.status(404).render('404');
+    res.status(404).render('404'); // Assuming you have a 404 error template
 });
+
 
 // Start the server
 /*httpsServer.listen(port, () => {

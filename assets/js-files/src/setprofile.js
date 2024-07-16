@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gender = document.querySelectorAll('.gender');
 
+    //function to change the color for the gender buttons
     function colorChange(list) {
         list.forEach(item => {
             item.addEventListener('click', (e) => {
@@ -23,14 +24,14 @@ $('#setupform').on('submit', function(e) {
 })
 
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const photoInput = document.getElementById('photoInput');
     const imagePreview = document.getElementById('image-preview');
+    const show = document.getElementById('show')
     const popUp = document.getElementById('popUp');
     let file = null; // Declare file variable in accessible scope
 
+    //chose a image and preview it on the popup
     photoInput.addEventListener('change', (event) => {
         popUp.style.display = 'block';
         file = event.target.files[0];
@@ -38,16 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const reader = new FileReader();
             reader.onload = (e) => {
                 imagePreview.src = e.target.result;
+                show.src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
     });
 
+    // function to cancel the chosen image and go back to default
     const cancel = function() {
         popUp.style.display = 'none';
-        file = null; // Reset file variable
+        show.src = '/assets/images/images.png'
     };
 
+    //funtion to continue to use the chosen image
     const continueAction = function() {
         popUp.style.display = 'none';
         // Perform further actions or submit form with file data
@@ -63,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (continueBtn) {
         continueBtn.addEventListener('click', continueAction);
     }
-    
+
+    //skip the whole process of setting user data and redirect to app dashboard
     const skip = document.getElementById('skip');
     skip.addEventListener('click', () => {
         window.location.href = 'dashboard'
@@ -71,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
+//send form data to backend for processing
 $('#done').on('click', function() {
 
     var formData = new FormData();
@@ -83,34 +88,24 @@ $('#done').on('click', function() {
         $('#country').val());
     formData.append('gender',
         $('#gender').val());
-        
+
     formData.append('imageFile',
         $('#photoInput')[0].files[0]);
 
-
-    /*const names = document.getElementById('names').value
-    const number = document.getElementById('number').value
-    const country = document.getElementById('country').value
-    const gender = document.getElementById('gender').value
-
-    const myData = {
-        names: names || null,
-        number: number || null,
-        country: country || null,
-        gender: gender || null
-    };*/
-
     $.ajax({
-        url: 'profileSetup',
+        url: '/profileSetup',
         type: 'POST',
         data: formData,
         contentType: false,
         processData: false,
         success: function(response) {
             console.log('response:', response)
-            if (response.message === 'Successful') {
-                window.location.href = 'dashboard'
-            }
+            /*if (response === 'Successful') {
+                window.location.href = '/dashboard'
+                $('#setupform').trigger('reset')
+            }*/
+            window.location.href = '/dashboard'
+            $('#setupform').trigger('reset')
         },
         error: function(error) {
             console.error('error:', error)

@@ -24,19 +24,6 @@
 
 
     <div class="user" id="userAuthState">
-        <% if (user !== null) {
-            %>
-            <button id="logout" style="background-color:#dc3545;" class="auth">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp; Logout</button>
-            <%
-        } else {
-            %>
-
-            <button class=" auth" id="login">
-                <i class="fa-solid fa-right-to-bracket"></i>  &nbsp; Login</button>
-            <%
-        } %>
-
 
     </div>
 
@@ -57,27 +44,27 @@
 
     <section class="card-section">
         <a href="/airtime"class="card">
-            <i style="font-size:1.3em; color:blue;" class="fa">&#xf095;</i>
+            <i style="font-size:1.3em; color:green;" class="fa">&#xf095;</i>
             <h3>Airtime</h3>
 
         </a>
 
         <a href="/data" class="card">
-            <i style="font-size:1.3em; color:#007bff;;" class="fa">&#xf1eb;</i>
+            <i style="font-size:1.3em; color:#007bff;" class="fa">&#xf1eb;</i>
             <h3>Data</h3>
 
 
         </a>
 
         <a href="#" class="card">
-            <i style="font-size:1.3em;" class="fa">&#x1F4A1;</i>
+            <i style="font-size:1.3em; color:yellow; " class="fa">&#x1F4A1;</i>
             <h3>Utility</h3>
 
         </a>
 
         <a href="#" class="card">
-            <i style="font-size:1.3em; color:#333333;" class="fa">&#xf26c;</i>
-            <h3>Tv</h3>
+            <i style="font-size:1.3em; color:var(--text) ;" class="fa">&#xf26c;</i>
+            <h3>Cable</h3>
 
         </a>
     </section>
@@ -102,10 +89,9 @@
     <!--</div>-->
 
 </main>
-    <div class="copied" id="copied">
-        Copied!
-    </div>
-<script src="/assets/js-files/home.js"></script>
+<div class="copied" id="copied">
+    Copied!
+</div>
 
 
 <!--</html>-->

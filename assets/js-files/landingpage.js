@@ -1,3 +1,4 @@
+//function to toggle dropdown
 function toggleDropdown() {
     var dropdownContent = document.querySelector(".dropdown-content");
     var isActive = dropdownContent.parentElement.classList.contains("active");
@@ -18,9 +19,11 @@ $(document).ready(function() {
 
 const handwriting = document.querySelector('.handwriting');
 
+// function to simulate Handwriting
 function simulateHandwriting(container, textArray) {
     let index = 0;
 
+//funtion to type the letters
     function type() {
         container.innerHTML = textArray[index].substring(0, container.innerHTML.length + 1);
         if (container.innerHTML === textArray[index]) {
@@ -30,6 +33,7 @@ function simulateHandwriting(container, textArray) {
         }
     }
 
+//function to erase written letters
     function erase() {
         container.innerHTML = textArray[index].substring(0, container.innerHTML.length - 1);
         if (container.innerHTML === "") {
@@ -46,7 +50,7 @@ function simulateHandwriting(container, textArray) {
 const text = ['Welcome To Nwigiri Telecoms', 'How can we be of help?'];
 simulateHandwriting(handwriting, text);
 
-
+//green and red marks that signify available services on each plan
 document.addEventListener('DOMContentLoaded', () => {
     const oks = document.querySelectorAll('.ok');
     const notOks = document.querySelectorAll('.not-ok');
@@ -67,6 +71,7 @@ const submit = document.getElementById('submit')
 
 submit.innerHTML = 'Send'
 
+//form submission and processing 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     submit.innerHTML = `Processing... `
@@ -98,6 +103,7 @@ form.addEventListener('submit', (e) => {
     .then(data => {
         console.log('Success:', data); // Handle the response data
         submit.innerHTML = 'Successfull!'
+        form.reset()
         setTimeout(function() {
             submit.innerHTML = 'Send'
         }, 2000);

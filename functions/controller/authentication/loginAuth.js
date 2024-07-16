@@ -1,67 +1,64 @@
+//getting firebase auth object
 const authObj = require('../../auth')
 const auth = authObj.auth
+
+//firebase functions
 const {
-  signInWithEmailAndPassword
+    signInWithEmailAndPassword
 } = require("firebase/auth");
 
-let message = null;
-let user = null;
-let logInMessage = null;
 
-
+//function to authenticate user
 const logIn = (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+    //destructuer req body
+    const {
+        email,
+        password
+    } = req.body
 
-  signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      logInMessage = 'Sucessful!'
-      user = userCredential.user;
-      userId = user.uid;
+        const user = userCredential.user
+        userId = user.uid;
+        console.log(userId)
 
-      res.redirect('/');
+        return res.send('Successful!')
+
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode + errorMessage)
-      user = null;
+        let errorCode = error.code
+        console.log('Error code: ', errorCode)
 
-      switch (error.code) {
-        case 'auth/invalid-email':
-          logInMessage = 'Invalid email';
-          break;
-        case 'auth/user-disabled':
-          logInMessage = 'User disabled';
-          break;
-        case 'auth/wrong-password':
-          logInMessage = 'Wrong password';
-          break;
-        case 'auth/email-already-in-use':
-          logInMessage = 'Email already in use Please login';
-          break;
-        case 'auth/weak-password':
-          logInMessage = 'password to weak';
-          break;
-        case 'auth/invalid-credential':
-          logInMessage = 'invalid-credential';
-          break;
-        default:
-          logInMessage = 'Server error, please try again';
-          break;
-      }
+        let message;
+        //firebase error code to send to frontend
+        switch (errorCode) {
+            case 'auth/invalid-email':
+                message = 'Invalid email';
+                break;
+            case 'auth/user-disabled':
+                message = 'User disabled';
+                break;
+            case 'auth/wrong-password':
+                message = 'Wrong password';
+                break;
+            case 'auth/email-already-in-use':
+                message = 'Email already in use Please login';
+                break;
+            case 'auth/weak-password':
+                message = 'password to weak';
+                break;
+            case 'auth/invalid-credential':
+                message = 'invalid-credential';
+                break;
+            default:
+                message = 'Server error, please try again';
+                break;
+        }
+        return res.send(message)
 
     })
-
-}
-
-const logInDataApi = (req, res) => {
-  res.json({
-    logInMessage
-  });
 }
 
 module.exports = {
-  logIn,
-  logInDataApi
+    logIn
 };

@@ -37,7 +37,7 @@ const accountDelete = (req, res) => {
         .catch((error) => {
             // Handle errors deleting the user
             console.error("Error deleting user:", error);
-            return res.status(500).send("Error deleting user");
+            return res.status(500).send("Error deleting user").render('log-in')
         });
     } else {
         console.error("No authenticated user to delete.");

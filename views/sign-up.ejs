@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <title>Sign Up</title>
+    <!-- data inhected to this file from the backend using ejs-->
     <%- head %>
     <%- bootstrap %>
     <link rel="stylesheet" href="/assets/css-files/sign-up.css">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 </head>
 <body>
@@ -13,6 +13,7 @@
         <div class="upper-back"></div>
         <div class="back-and-theme">
             <span class="back" onclick="history.back()"><i class="material-icons" style="font-size:30px;">&#xe5c4;</i></span>
+            <!--without this line of code foe some resons the theme wont work for this page-->
             <button class="theme" role="switch" aria-label="light/dark mode" style="display:none"></button>
         </div>
     </section>
@@ -37,7 +38,7 @@
 
 
                 <div class="t-nd-c">
-                    <div>
+                    <div id="check-and-term">
                         <input type="checkbox" class="t-and-c check" id="t-and-c" name="t-and-c">
                         <label for="t-and-c" class="t-and-c"> I agree to the </label>
                     </div>
@@ -51,10 +52,6 @@
             <a href="/log-in"><button class="new-user trans-btn">
                 <b>Already a user?</b> Log In
             </button></a>
-
-
-
-            <%- popUpAlert %>
 
         </main>
         <script src="/assets/js-files/general.js"></script>

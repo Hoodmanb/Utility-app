@@ -72,7 +72,8 @@ input:nth-of-type(5) {
 }
 #cameraIcon {
     font-size: 2.5em;
-    color: grey;
+    color: white;
+    
 }
 input:nth-of-type(4):active,
 input:nth-of-type(5):active,
@@ -91,11 +92,12 @@ button:active {
     padding: 10px;
     border: none;
     border-radius: 50%;
-    background-color: #e0e0e0;
+    background-color: black;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 0.5;
 }
 .photoInput {
     display: none;
