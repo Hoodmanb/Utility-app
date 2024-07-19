@@ -115,14 +115,16 @@ async function updateUserDetails(res, user, field, value) {
                     updateUserDetails(res, user, field, value)
                 }
             } else {
-                return res.redirect('log-in');
-            }
+                let authState = 'not a user'
+
+                return res.json({ authState})
+        }
 
             //getProfileData(user.uid)
         })
-    }
+}
 
 
-    module.exports = {
-        updateUserData
-    }
+module.exports = {
+    updateUserData
+}

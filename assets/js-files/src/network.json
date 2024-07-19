@@ -1,0 +1,100 @@
+{
+    "nigeria": {
+        "mtn": [{
+            "plan": "1gb",
+            "amount": "250",
+            "duration": "30days",
+            "id": "1gig"
+        },
+            {
+                "plan": "2gb",
+                "amount": "500",
+                "duration": "30days",
+                "id": "2gig"
+            },
+            {
+                "plan": "3gb",
+                "amount": "750",
+                "duration": "30days",
+                "id": "3gig"
+            },
+            {
+                "plan": "5gb",
+                "amount": "1000",
+                "duration": "60days",
+                "id": "5gig"
+            }],
+        "glo": [{
+            "plan": "1gb",
+            "amount": "250",
+            "duration": "30days",
+            "id": "1gig"
+        },
+            {
+                "plan": "2gb",
+                "amount": "500",
+                "duration": "30days",
+                "id": "2gig"
+            },
+            {
+                "plan": "3gb",
+                "amount": "750",
+                "duration": "30days",
+                "id": "3gig"
+            },
+            {
+                "plan": "5gb",
+                "amount": "1000",
+                "duration": "60days",
+                "id": "5gig"
+            }],
+        "airtel": [{
+            "plan": "1gb",
+            "amount": "250",
+            "duration": "30days",
+            "id": "1gig"
+        },
+            {
+                "plan": "2gb",
+                "amount": "500",
+                "duration": "30days",
+                "id": "2gig"
+            },
+            {
+                "plan": "3gb",
+                "amount": "750",
+                "duration": "30days",
+                "id": "3gig"
+            },
+            {
+                "plan": "5gb",
+                "amount": "1000",
+                "duration": "60days",
+                "id": "5gig"
+            }],
+        "9mobile": [{
+            "plan": "1gb",
+            "amount": "250",
+            "duration": "30days",
+            "id": "1gig"
+        },
+            {
+                "plan": "2gb",
+                "amount": "500",
+                "duration": "30days",
+                "id": "2gig"
+            },
+            {
+                "plan": "3gb",
+                "amount": "750",
+                "duration": "30days",
+                "id": "3gig"
+            },
+            {
+                "plan": "5gb",
+                "amount": "1000",
+                "duration": "60days",
+                "id": "5gig"
+            }]
+    }
+}

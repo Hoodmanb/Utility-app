@@ -10,9 +10,9 @@ const {
     onAuthStateChanged
 } = require("firebase/auth");
 
-// // Environment Variables
-// const port = process.env.PORT || 9090;
-// const host = process.env.HOST || 'localhost';
+//uncomment this for local dev
+// const port = 9090;
+// const host = 'localhost';
 
 // Initialize Express app
 const app = express();
@@ -107,9 +107,9 @@ let logout = {
     view: `<button id="logout" style="background-color:#dc3545;" class="auth">
     <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp; Logout
     </button>`,
-    remove:`<button style="background-color:#dc3545" id="delete" class="delete"> <i class="fa-solid fa-trash"></i>&nbsp;Delete Account</button>`,
-    auth:`<button style="background-color:#dc3545;" id="prof-logout" class="prof-logout">  <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;Logout</button>`,
-    authState:'#prof-logout'
+    remove: `<button style="background-color:#dc3545" id="delete" class="delete"> <i class="fa-solid fa-trash"></i>&nbsp;Delete Account</button>`,
+    auth: `<button style="background-color:#dc3545;" id="prof-logout" class="prof-logout">  <i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp;Logout</button>`,
+    authState: '#prof-logout'
 };
 
 let login = {
@@ -117,8 +117,8 @@ let login = {
     view: `<button class="auth" id="login">
     <i class="fa-solid fa-right-to-bracket"></i> &nbsp; Login
     </button>`,
-    auth:`<button style="background-color:green" id="prof-login" class="prof-login">  <i class="fa-solid fa-right-to-bracket"></i>&nbsp;LogIn</button>`,
-    authState:'#prof-login'
+    auth: `<button style="background-color:green" id="prof-login" class="prof-login">  <i class="fa-solid fa-right-to-bracket"></i>&nbsp;LogIn</button>`,
+    authState: '#prof-login'
 };
 
 const isUser = (req, res) => {
@@ -189,14 +189,9 @@ app.use((req, res, next) => {
     res.status(404).render('404'); // Assuming you have a 404 error template
 });
 
-
-// Start the server
-// httpsServer.listen(port, () => {
-// console.log(`Access Server On ${port}`);
+//uncomment this for local dev
+// app.listen(port, () => {
+//     console.log(`Access Server On http://${host}:${port}`);
 // });
-
-/*app.listen(port, () => {
-    console.log(`Access Server On http://${host}:${port}`);
-});*/
 
 module.exports = app

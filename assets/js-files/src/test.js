@@ -1,9 +1,24 @@
 const greet = document.getElementById('greet')
 const image = document.getElementById('image')
-function fetchData(list, data) {
+var data = {};
+
+const list = [
+    'names',
+    'phone',
+    'displayName',
+    'gender',
+    'country',
+    'email',
+    'photoURL'
+
+];
+
+async function fetchData(get, list, data) {
+    await get()
     list.forEach(item => {
-        const element = document.getElementById(`socket-${item}`);
+        // const element = document.getElementById(`socket-${item}`);
         if (data[item]) {
+            console.log(data[item])
             if (item === 'country') {
                 element.textContent = data[item];
                 console.log(data[item])
@@ -16,22 +31,16 @@ function fetchData(list, data) {
             } else {
                 element.textContent = data[item];
             }
+            if (data['displayName']) {
+                greet.textContent = data['displayName']
+            }
         }
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const list = [
-        'names',
-        'phone',
-        'displayName',
-        'gender',
-        'country',
-        'email',
-        'photoURL'
+// document.addEventListener("DOMContentLoaded", () => {
 
-    ];
-
+function fetch() {
     fetch('/api/dynamic-data')
     .then(response => {
         if (!response.ok) {
@@ -41,12 +50,29 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(data => {
         if (!('message' in data)) {
-            fetchData(list, data)
-            greet.textContent += data['displayName']
+            data = data
+            console.log(data); // Handle the JSON data
+
+            // fetchData(list, data)
+            // greet.textContent += data['displayName']
+        } else {
+            console.log(data.message);
         }
-        console.log(data); // Handle the JSON data
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
+    // });
+}
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        // await fetchData(list, data);
+        console.log('got to the end');
+    } catch (error) {
+        console.error('Error:', error);
+    }
 });
+
+fetchData(fetch, list, data);

@@ -81,7 +81,9 @@ $(document).ready(() => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            fetchData(toEdit, data)
+            if (!('authState' in data)) {
+                fetchData(toEdit, data)
+            }
             console.log('Response from server:', data);
             console.log(toEdit)
 
