@@ -78,7 +78,8 @@ const dashboard = (req, res) => {
         {
             head: head,
             indexhead: indexhead,
-            user: user
+            user: user,
+            bootstrap:bootstrap
         });
 };
 
@@ -104,17 +105,17 @@ const profileSetup = (req, res) => {
     })
 }
 
-const partials = (req, res) => {
+/*const partials = (req, res) => {
     res.render("partials",
         {
-            head: head
+            head: head,
         });
-}
+}*/
 
 const partials_profile = (req, res) => {
     res.render("partials",
         {
-            head: head
+            head: head,
         });
 }
 
@@ -129,7 +130,6 @@ const data = (req, res, next) => {
     res.render('data',
         {
             head: head,
-            bootstrap
         })
 }
 
@@ -137,14 +137,13 @@ const airtime = (req, res) => {
     res.render("airtime",
         {
             head: head,
-            bootstrap
         });
 }
 
 
 module.exports = {
     signUp,
-    partials,
+    // partials,
     partials_profile,
     partials_home,
     logIn,

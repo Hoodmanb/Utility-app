@@ -1,78 +1,61 @@
-const greet = document.getElementById('greet')
-const image = document.getElementById('image')
-var data = {};
+////////////////SSE server sent event
+const express = require('express');
+const app = express();
+const port = 3000;
 
-const list = [
-    'names',
-    'phone',
-    'displayName',
-    'gender',
-    'country',
-    'email',
-    'photoURL'
+app.get('/events', (req, res) => {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
 
-];
+    const sendEvent = (data) => {
+        res.write(`data: ${data}\n\n`);
+    };
 
-async function fetchData(get, list, data) {
-    await get()
-    list.forEach(item => {
-        // const element = document.getElementById(`socket-${item}`);
-        if (data[item]) {
-            console.log(data[item])
-            if (item === 'country') {
-                element.textContent = data[item];
-                console.log(data[item])
-            } else if (item === 'photoURL') {
-                element.src = data[item];
-                image.src = data[item]
-            } else if (item === 'email') {
-                const lastTenCharacters = `...${data[item].slice(-15)}`;
-                element.textContent = lastTenCharacters
-            } else {
-                element.textContent = data[item];
-            }
-            if (data['displayName']) {
-                greet.textContent = data['displayName']
-            }
-        }
+    const intervalId = setInterval(() => {
+        sendEvent(new Date().toLocaleTimeString());
+    }, 1000);
+
+    req.on('close', () => {
+        clearInterval(intervalId);
     });
-}
-
-// document.addEventListener("DOMContentLoaded", () => {
-
-function fetch() {
-    fetch('/api/dynamic-data')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // Parse JSON response
-    })
-    .then(data => {
-        if (!('message' in data)) {
-            data = data
-            console.log(data); // Handle the JSON data
-
-            // fetchData(list, data)
-            // greet.textContent += data['displayName']
-        } else {
-            console.log(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
-    // });
-}
-
-
-document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        // await fetchData(list, data);
-        console.log('got to the end');
-    } catch (error) {
-        console.error('Error:', error);
-    }
 });
 
-fetchData(fetch, list, data);
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
+
+
+
+
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Example</title>
+</head>
+<body>
+    <div id="time"></div>
+    <script>
+        const eventSource = new EventSource('/events');
+
+        eventSource.onmessage = (event) => {
+    document.getElementById('time').innerText = `Server Time: ${event.data}`;
+    };
+
+        eventSource.onerror = (error) => {
+    console.error('SSE error:', error);
+    };
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+///////////////////////////////
+

@@ -1,5 +1,7 @@
-const greet = document.getElementById('greet');
-const image = document.getElementById('image');
+// const greet = document.getElementById('greet');
+// const image = document.getElementById('image');
+let greet;
+let image;
 let data = {};
 
 const list = [
@@ -22,7 +24,7 @@ async function fetchDataFromApi() {
         if (!('message' in jsonData)) {
             data = jsonData;
             console.log(data); // Handle the JSON data
-            await updateDOM(list, data); // Call the function to update DOM
+            //await updateDOM(list, data); // Call the function to update DOM
         } else {
             console.log(jsonData.message);
         }
@@ -62,7 +64,10 @@ async function updateDOM(list, data) {
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        await fetchDataFromApi(); // Fetch data once on DOMContentLoaded
+        greet = document.getElementById('greet');
+        image = document.getElementById('image');
+        // await fetchDataFromApi(); // Fetch data once on DOMContentLoaded
+        await updateDOM(list, data); // Call the function to update DOM
         console.log('got to the end');
     } catch (error) {
         console.error('Error:', error);

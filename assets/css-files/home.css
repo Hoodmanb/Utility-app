@@ -41,18 +41,6 @@
   transform: translate(-5px, -5px);
   opacity: 0.5;
 }
-.theme {
-  background-color: var(--bkg2);
-  width: 3em;
-  height: 3em;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  color: var(--black);
-  margin-right: 15px;
-}
 .notification::after {
   content: "";
   width: 10px;

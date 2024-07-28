@@ -8,7 +8,7 @@ main {
     margin: 35px auto;
     position: relative;
     border-radius: 30px;
-    background: var(--bkg);
+    background: var(--bkg2);
 }
 
 .toggle-btn {
@@ -25,19 +25,19 @@ main {
 
 #btn {
     left: 0;
-    top: 0;
+    top: 2.5%;
     position: absolute;
     width: 110px;
-    height: 100%;
-    background: var(--bkg2 );
+    height: 95%;
+    background: var(--bkg);
     border-radius: 30px;
     transition: .5s;
 }
 .right {
-    right: -6em;
+    right: -3.8em;
 }
 .left {
-    left: 2.5em;
+    left: 1.5em;
 }
 #setting {
     display: none;
@@ -140,6 +140,16 @@ main {
     width: 100%;
     margin-bottom: 10px;
 }
+tr #theme{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.switch{
+    display: flex;
+    justify-content: right;
+    align-items: center ; 
+}
 #itemToEdit {
     margin-bottom: 20px;
     width: 100%;
@@ -153,8 +163,7 @@ main {
     font-size: 16px;
     color: var(--text);
 }
-.editPop:active,
-.themeEdit:active {
+.editPop:active {
     transform: translate(0, -5px);
     opacity: 0.5;
 }
