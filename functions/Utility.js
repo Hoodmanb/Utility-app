@@ -50,7 +50,6 @@ const userData = require('./models/userData');
 
 const setUserData = require('./models/setUserData');
 
-
 // Authentication Check Middleware
 const authCheck = (req, res, next) => {
   onAuthStateChanged(auth, async (user) => {
@@ -61,46 +60,46 @@ const authCheck = (req, res, next) => {
         return res.render('log-in')
       }
     }
-  });
+  }); 
 }
-
-
+ 
 const dynamicData = (req, res) => {
-  //let message
-  onAuthStateChanged(auth,
-    async (user) => {
-      if (!res.headersSent) {
-        if (user) {
-          //console.log('displayname :', user.displayName)
-          let profileData = await getRoutes.getProfileData(user) || {};
-          let {
-            names,
-            phone,
-            gender,
-            country
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.flushHeaders();
 
-          } = profileData;
-          let displayName = user.displayName
+  const sendEvent = (data) => {
+    res.write(`data: ${JSON.stringify(data)}\n\n`);
+    console.log('sent');
+  };
 
-          const dataToSend = {
-            names: names,
-            phone: phone,
-            displayName: displayName,
-            gender: gender,
-            country: country,
-            email: user.email,
-            photoURL: user.photoURL
-          };
-          return res.json(dataToSend)
-        } else {
-          return res.json({
-            message: 'User is not logged in'
-          })
-        }
+  function authStates() {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        let profileData = await getRoutes.getProfileData(user) || {};
+        let { names, phone, gender, country } = profileData;
 
+        let displayName = user.displayName;
+
+        const dataToSend = {
+          names: names,
+          phone: phone,
+          displayName: displayName,
+          gender: gender,
+          country: country,
+          email: user.email,
+          photoURL: user.photoURL
+        };
+        sendEvent(dataToSend);
+      } else {
+        sendEvent({ message: 'User is not logged in' });
       }
     });
-}
+  }
+
+  authStates();
+};
 
 let logout = {
   state: '#logout',

@@ -1,84 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%- bootstrap%>
-     <link rel="stylesheet" href="/assets/css-files/reset.css">
-    <%- indexhead %>
-    <%- head %>
+  <%- bootstrap%>
+  <link rel="stylesheet" href="/assets/css-files/reset.css">
+  <%- indexhead %>
+  <%- head %>
 </head>
 <body>
 
-    <!--using ejs to eject each of the three navigation sections into this file-->
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <%- include('partials/home') %>
-            </div>
-            <div class="swiper-slide">
-                <%- include('partials/history') %>
-            </div>
-            <div class="swiper-slide">
-                <%- include('partials/profile') %>
-            </div>
-
-        </div>
+  <!--   using ejs to eject each of the three navigation sections into this file -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <%- include('partials/home') %>
+      </div>
+      <div class="swiper-slide">
+        <%- include('partials/history') %>
+      </div>
+      <div class="swiper-slide">
+        <%- include('partials/profile') %>
+      </div>
 
     </div>
-    <!--navigation icons-->
-    <div class="swiper-pagination"></div>
 
+  </div>
+  <!--   navigation icons -->
+  <div class="swiper-pagination"></div>
 
-    <script src="/assets/js-files/src/authState.js"></script>
-    <script src="/assets/js-files/theme.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="/assets/js-files/src/dynamicData.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script defer>
-        //swiper js setup
-        var menu = ['&#xe88a;', '&#xe889;', '&#xe7fd;'];
-        var swiper = new Swiper(".mySwiper", {
-            autoHeight: true,
-            slidesPerView: 1,
-            spaceBetween: 5,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-                renderBullet: function (index, className) {
-                    var icon = menu[index % menu.length];
-                    return '<span class="' + className + ' material-icons">' + icon + '</span>';
-                },
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 1,
-                    spaceBetween: 5,
-                },
-                768: {
-                    slidesPerView: 1,
-                    spaceBetween: 5,
-                },
-                1024: {
-                    slidesPerView: 1,
-                    spaceBetween: 5,
-                },
-            },
-            on: {
-                slideChange: function () {
-                    localStorage.setItem('currentSlide', swiper.activeIndex);
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
+  <script src="/assets/js-files/src/authState.js"></script>
+  <script src="/assets/js-files/src/dynamicData.js"></script>
+  <script src="/assets/js-files/theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script defer>
+    //swiper js setup
+    var menu = ['&#xe88a;', '&#xe889;', '&#xe7fd;'];
+    var swiper = new Swiper(".mySwiper", {
+      autoHeight: true,
+      slidesPerView: 1,
+      spaceBetween: 5,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function (index, className) {
+          var icon = menu[index % menu.length];
+          return '<span class="' + className + ' material-icons">' + icon + '</span>';
+        },
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 5,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 5,
+        },
+        1024: {
+          slidesPerView: 1,
+          spaceBetween: 5,
+        },
+      },
+      on: {
+        slideChange: function () {
+          localStorage.setItem('currentSlide', swiper.activeIndex);
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
 
-        window.addEventListener('load', function () {
-            let slideToOnRefresh = localStorage.getItem('currentSlide');
-            if (slideToOnRefresh !== null) {
-                swiper.slideTo(parseInt(slideToOnRefresh));
-            }
-        });
-    </script>
+    window.addEventListener('load', function () {
+      let slideToOnRefresh = localStorage.getItem('currentSlide');
+      if (slideToOnRefresh !== null) {
+        swiper.slideTo(parseInt(slideToOnRefresh));
+      }
+    });
+  </script>
 </body>
 </html>
