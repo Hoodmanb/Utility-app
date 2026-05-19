@@ -1,0 +1,66 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090514" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="laptopGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="600" height="400" fill="url(#bgGrad)" />
+  
+  <!-- Ambient background glow -->
+  <circle cx="300" cy="180" r="140" fill="#a855f7" opacity="0.12" filter="url(#glow)" />
+  
+  <!-- Laptop design -->
+  <g transform="translate(160, 100)">
+    <!-- Screen backlight glow -->
+    <rect x="-10" y="-10" width="300" height="190" rx="16" fill="url(#laptopGrad)" opacity="0.2" filter="url(#glow)" />
+    
+    <!-- Screen frame -->
+    <rect x="0" y="0" width="280" height="170" rx="10" fill="#0f172a" stroke="#4f46e5" stroke-width="2" />
+    <!-- Inner Screen -->
+    <rect x="8" y="8" width="264" height="154" rx="6" fill="#020617" />
+    
+    <!-- Code/Graph visualization on Screen -->
+    <g transform="translate(20, 20)" opacity="0.85">
+      <!-- Grid lines -->
+      <path d="M 0 100 L 224 100" stroke="#1e293b" stroke-width="1" />
+      <path d="M 0 70 L 224 70" stroke="#1e293b" stroke-width="1" />
+      <path d="M 0 40 L 224 40" stroke="#1e293b" stroke-width="1" />
+      
+      <!-- Graph Line -->
+      <path d="M 10 90 Q 50 20 90 60 T 170 30 T 210 50" fill="none" stroke="url(#laptopGrad)" stroke-width="3" filter="url(#glow)" />
+      
+      <!-- Code block decoration -->
+      <rect x="10" y="115" width="40" height="6" rx="2" fill="#38bdf8" />
+      <rect x="55" y="115" width="80" height="6" rx="2" fill="#475569" />
+      <rect x="10" y="125" width="60" height="6" rx="2" fill="#ec4899" />
+      <rect x="75" y="125" width="35" height="6" rx="2" fill="#475569" />
+    </g>
+    
+    <!-- Web camera -->
+    <circle cx="140" cy="4" r="2" fill="#475569" />
+    
+    <!-- Laptop hinge -->
+    <rect x="120" y="170" width="40" height="8" fill="#1e293b" />
+    
+    <!-- Laptop base/keyboard -->
+    <path d="M -25 178 L 305 178 L 325 198 C 325 202 320 206 315 206 L -35 206 C -40 206 -45 202 -45 198 Z" fill="#0f172a" stroke="#4f46e5" stroke-width="2" />
+    <!-- Glowing accent on base -->
+    <path d="M -20 179 L 300 179" stroke="url(#laptopGrad)" stroke-width="1.5" />
+    
+    <!-- Trackpad -->
+    <rect x="110" y="186" width="60" height="15" rx="3" fill="#1e293b" stroke="#334155" stroke-width="1" />
+  </g>
+  
+  <text x="30" y="50" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" font-weight="bold">HIGH PERFORMANCE</text>
+  <text x="30" y="370" fill="url(#laptopGrad)" font-family="system-ui, sans-serif" font-size="20" font-weight="extrabold">LAPTOPS &amp; COMPUTERS</text>
+</svg>

@@ -1,35 +1,36 @@
-Utility App
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This project is aimed to make data, airtime, cable and other utiility payment easy, less
-cost and fast. this app would be made available in not just one country but multiple.
+## Getting Started
 
-*Table Of Content*
-    - Installation
-    - Usage
-    - Features
-    - Contributing
-    - License
-    - Contact
-    - Acknowledgment
-    
-*Installation*
+First, run the development server:
 
-First you need to make this repository available in your local machine. *Prerequisites* - nodejs(used v22.2.0 >), nodemon(used v3.1.4 >). if have both of this installed navigate to the repository root directory (Utility-app), run *npm install* (if you are using a desktop env), for anyone using termux on mobile run *npm install --no-bin-links*. after running this commands all the packages listed in the package.json would be installed. at this point you can run the app with *nodemon Utility*, you would get a response as shown in this image-
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-![Terminal Screenshot](./assets/images/link.jpg)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Utility.js is the app entry point, you don't need to tell nodemon what the file extension is hense *nodemon Utility*
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-![landingpage Screenshot](./assets/images/landingpage.jpg)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-*Acknowledgment*
-Might come as a supprise to some great minded individuals who looked at a problem and developed a solution, as of the time of the creation of this README file I am not financially able to get a system but with the help of projects that some brilliant minds have developed I am able to code and learn a lot with a moblie device, special thanks to the creators of Termux Android Emulator, Android Code Editor, Acode. And special thanks to Julien @Alx Africa and all Alx team members.
+## Learn More
 
-*Ps*
-This project was inspired by the thought of how difficult it is/was for newbies to purchase data for coding. The app is aimed to simplify and reduce the cost. The journey to becoming a tech nerd gets difficult as one makes progress, and without sheer will, it is nearly impossible to make it till the end...
+To learn more about Next.js, take a look at the following resources:
 
-*Authur*
-Nwigiri Joshua
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-LinkedIn - https://www.linkedin.com/in/joshua7281
-X - https://x.com/joshua3302
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

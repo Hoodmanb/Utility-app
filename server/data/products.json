@@ -1,0 +1,170 @@
+[
+  {
+    "id": "product_1",
+    "title": "iPhone 13 Pro (128GB)",
+    "price": 650000,
+    "condition": "Like New",
+    "category": "phones",
+    "status": "available",
+    "featured": true,
+    "description": "Mint condition iPhone 13 Pro, Sierra Blue. Battery health is at 89%. Comes with original box and a premium USB-C to Lightning fast-charging cable.",
+    "images": [
+      "/uploads/phone.svg"
+    ],
+    "createdAt": "2026-05-19T08:00:00Z"
+  },
+  {
+    "id": "product_2",
+    "title": "MacBook Pro M1 (16GB RAM, 512GB)",
+    "price": 1200000,
+    "condition": "Excellent",
+    "category": "laptops",
+    "status": "available",
+    "featured": true,
+    "description": "Space Gray MacBook Pro with the powerful M1 chip. 16GB unified memory handles software development and editing with ease. 512GB SSD. Zero scratches on screen.",
+    "images": [
+      "/uploads/laptop.svg"
+    ],
+    "createdAt": "2026-05-19T07:30:00Z"
+  },
+  {
+    "id": "product_3",
+    "title": "Sony PlayStation 5 Slim Digital",
+    "price": 550000,
+    "condition": "Used - Good",
+    "category": "gaming",
+    "status": "available",
+    "featured": true,
+    "description": "Fully functional PS5 Slim Digital Edition. Comes with 1 original white DualSense controller, HDMI cable, power cord, and vertical stand. Quiet operation, updated to latest firmware.",
+    "images": [
+      "/uploads/gaming.svg"
+    ],
+    "createdAt": "2026-05-19T06:15:00Z"
+  },
+  {
+    "id": "product_4",
+    "title": "Philips Digital Air Fryer XL",
+    "price": 95000,
+    "condition": "Excellent",
+    "category": "appliances",
+    "status": "available",
+    "featured": false,
+    "description": "Cook healthy meals with 90% less oil. XL capacity fits a whole chicken. digital touchscreen with 7 presets. Basket is fully non-stick and dishwasher safe.",
+    "images": [
+      "/uploads/appliance.svg"
+    ],
+    "createdAt": "2026-05-18T15:00:00Z"
+  },
+  {
+    "id": "product_5",
+    "title": "Vintage Brown Leather Jacket",
+    "price": 120000,
+    "condition": "Vintage",
+    "category": "fashion",
+    "status": "available",
+    "featured": true,
+    "description": "Genuine cowhide heavy leather jacket in rich distressed brown. Size Large. Features heavy-duty YKK zippers, 4 external pockets, and a clean quilted satin inner lining.",
+    "images": [
+      "/uploads/fashion.svg"
+    ],
+    "createdAt": "2026-05-18T12:00:00Z"
+  },
+  {
+    "id": "product_6",
+    "title": "Samsung Galaxy S22 Ultra 5G",
+    "price": 480000,
+    "condition": "Used - Fair",
+    "category": "phones",
+    "status": "reserved",
+    "featured": false,
+    "description": "Phantom Black with original S-Pen. Has minor cosmetic scuffs on the bottom bezel, but screen is protected by a hydrogel shield and operates perfectly. 256GB storage.",
+    "images": [
+      "/uploads/phone.svg"
+    ],
+    "createdAt": "2026-05-17T11:20:00Z"
+  },
+  {
+    "id": "product_7",
+    "title": "Dell XPS 15 9520 Core i7",
+    "price": 1400000,
+    "condition": "Excellent",
+    "category": "laptops",
+    "status": "sold",
+    "featured": false,
+    "description": "4K OLED Touchscreen laptop. Intel Core i7-12700H, 32GB DDR5 RAM, 1TB NVMe SSD, and NVIDIA RTX 3050 Ti graphics. An absolute powerhouse in a sleek aluminum chassis.",
+    "images": [
+      "/uploads/laptop.svg"
+    ],
+    "createdAt": "2026-05-16T14:40:00Z"
+  },
+  {
+    "id": "product_8",
+    "title": "Nintendo Switch OLED (White)",
+    "price": 280000,
+    "condition": "Like New",
+    "category": "gaming",
+    "status": "available",
+    "featured": false,
+    "description": "Immaculate condition Nintendo Switch OLED. Has had a tempered glass screen protector since day one. Includes original dock, joy-cons, strap accessories, and charger.",
+    "images": [
+      "/uploads/gaming.svg"
+    ],
+    "createdAt": "2026-05-15T09:10:00Z"
+  },
+  {
+    "id": "product_9",
+    "title": "DeLonghi Dedica Espresso Maker",
+    "price": 180000,
+    "condition": "Used - Good",
+    "category": "appliances",
+    "status": "reserved",
+    "featured": false,
+    "description": "Slim professional espresso coffee machine. Red finish, 15-bar pressure. Includes double-walled filter baskets, metal tamper, and milk frothing pitcher.",
+    "images": [
+      "/uploads/appliance.svg"
+    ],
+    "createdAt": "2026-05-14T16:55:00Z"
+  },
+  {
+    "id": "product_10",
+    "title": "Air Jordan 1 Retro High OG",
+    "price": 85000,
+    "condition": "Used - Good",
+    "category": "fashion",
+    "status": "sold",
+    "featured": false,
+    "description": "Chicago Colorway. Size US 10. Normal creasing on toe-box, clean midsoles, original box included. Selling to clear out closet space.",
+    "images": [
+      "/uploads/fashion.svg"
+    ],
+    "createdAt": "2026-05-13T10:00:00Z"
+  },
+  {
+    "id": "product_11",
+    "title": "Google Pixel 6 Pro (128GB)",
+    "price": 350000,
+    "condition": "Used - Good",
+    "category": "phones",
+    "status": "available",
+    "featured": false,
+    "description": "Cloudy White. 128GB. The pure Android experience with the revolutionary Google Tensor chip. Outstanding telephoto camera. Includes two premium protective cases.",
+    "images": [
+      "/uploads/phone.svg"
+    ],
+    "createdAt": "2026-05-12T13:45:00Z"
+  },
+  {
+    "id": "product_12",
+    "title": "Lenovo ThinkPad X1 Carbon Gen 9",
+    "price": 850000,
+    "condition": "Excellent",
+    "category": "laptops",
+    "status": "available",
+    "featured": false,
+    "description": "Ultra-lightweight premium business laptop. Core i5 11th Gen, 16GB RAM, 256GB NVMe SSD, matte Full HD screen. Battery life is fantastic. Spill-resistant backlit keyboard.",
+    "images": [
+      "/uploads/laptop.svg"
+    ],
+    "createdAt": "2026-05-11T16:00:00Z"
+  }
+]

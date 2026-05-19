@@ -1,0 +1,62 @@
+[
+  {
+    "id": "request_1",
+    "itemName": "PlayStation 5 Disc Edition",
+    "budget": 500000,
+    "condition": "Used - Good",
+    "description": "Looking for a clean, dust-free console with at least 1 working controller. Preferably with original packaging. Disc version only.",
+    "contact": "08031112222",
+    "status": "approved",
+    "createdAt": "2026-05-19T09:00:00Z"
+  },
+  {
+    "id": "request_2",
+    "itemName": "iPhone 14 Pro Max (256GB)",
+    "budget": 850000,
+    "condition": "Like New",
+    "description": "Must have screen protector, no major scratches. Battery health above 90% is highly preferred. Budget is slightly flexible for the right deal.",
+    "contact": "08123334444",
+    "status": "approved",
+    "createdAt": "2026-05-18T14:30:00Z"
+  },
+  {
+    "id": "request_3",
+    "itemName": "Keychron Q1 Mechanical Keyboard",
+    "budget": 120000,
+    "condition": "Used - Good",
+    "description": "Looking for Keychron Q1 or Q2 fully assembled with hot-swappable switches (browns or reds preferred). Must be in working condition.",
+    "contact": "09055556666",
+    "status": "pending",
+    "createdAt": "2026-05-18T10:00:00Z"
+  },
+  {
+    "id": "request_4",
+    "itemName": "NVIDIA GeForce RTX 3070 GPU",
+    "budget": 320000,
+    "condition": "Excellent",
+    "description": "Looking to upgrade my gaming rig. GPU must not have been used for mining. EVGA or ASUS ROG Strix editions are preferred.",
+    "contact": "08099998888",
+    "status": "approved",
+    "createdAt": "2026-05-17T11:00:00Z"
+  },
+  {
+    "id": "request_5",
+    "itemName": "Levi's Sherpa Denim Jacket",
+    "budget": 45000,
+    "condition": "Vintage",
+    "description": "Retro sherpa collar denim jacket by Levi's. Size Medium. Needs to be authentic vintage in clean, washed condition with no tears.",
+    "contact": "07066665555",
+    "status": "approved",
+    "createdAt": "2026-05-16T16:15:00Z"
+  },
+  {
+    "id": "request_6",
+    "itemName": "iPad Air (5th Gen) M1",
+    "budget": 550000,
+    "condition": "Like New",
+    "description": "Looking for the M1 iPad Air in space grey or blue. 64GB or 256GB. If you have an Apple Pencil Gen 2, I can pay extra for the bundle.",
+    "contact": "08188889999",
+    "status": "pending",
+    "createdAt": "2026-05-16T09:00:00Z"
+  }
+]

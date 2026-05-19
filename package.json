@@ -1,28 +1,24 @@
 {
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.9",
-    "express": "^4.19.2",
-    "firebase": "^10.12.2",
-    "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.14"
-  },
-  "name": "utility-app",
-  "version": "1.0.0",
-  "description": "a web app to puchase data, airtime and utilitybills (more features would be added with time)",
-  "main": "Utility.js",
+  "name": "temp-app",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Hoodmanb/Utility-app.git"
+  "dependencies": {
+    "framer-motion": "^12.39.0",
+    "lucide-react": "^1.16.0",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
-  "author": "Nwigiri Joshua",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Hoodmanb/Utility-app/issues"
-  },
-  "homepage": "https://github.com/Hoodmanb/Utility-app#readme"
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4"
+  }
 }
